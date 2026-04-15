@@ -31,18 +31,17 @@ public class AccountserviceApplication implements CommandLineRunner {
 		SpringApplication.run(AccountserviceApplication.class, args);
 	}
 
+	@Autowired
+	private org.springframework.core.env.Environment env;
+
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("first");
-		// // ✅ Warmup Kafka producer
-		// try {
-		// // Buộc producer connect tới broker mà không gửi message thật
-		// kafkaTemplate.partitionsFor("warmup-topic");
-		// log.info("Kafka producer warmup done ✅");
-		// } catch (Exception e) {
-		// log.warn("Kafka warmup failed: {}", e.getMessage());
-		// }
+		// Bỏ qua việc tạo Admin ảo nếu đang chạy ở môi trường Test
+		if (java.util.Arrays.asList(env.getActiveProfiles()).contains("test")) {
+			return;
+		}
 
+		System.out.println("first");
 		// ✅ Tạo account admin mặc định
 		if (!accountService.existsByCccd("123456789012")) {
 			Account admin = new Account();
