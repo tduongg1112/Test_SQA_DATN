@@ -31,3 +31,6 @@ coverage/
 
 # Notebook checkpoints
 .ipynb_checkpoints/
+
+# Personal working documents
+document_tduong/
