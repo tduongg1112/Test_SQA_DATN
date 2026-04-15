@@ -1,0 +1,110 @@
+Module ID,,,CS,,,,Author,Tùng Dương
+Usecase,,,"Chatbot backend service with Mock API, CheckDB & Fallback",,,,Pass,Fail
+,,,,,,,20,3
+,,,,,,,,
+Test case ID,File name,Method name,Purpose,Input,Expected output,Test Result,Note,
+UT_CS_APP_001,ChatbotAppTest,healthCheck_whenTokenizerLoaded_returnsStatusOk,Kiểm tra health check khi tokenizer đã được khởi tạo,"- Target: `app.py::health_check()`
+- Set `token_counter` khác `None`
+- Gọi `GET /`","- HTTP 200
+- JSON chứa `status=""ok""`, `message`, `tokenizer_loaded=true`
+- Trả đúng `kaggle_url` hiện tại",Pass,,
+UT_CS_APP_002,ChatbotAppTest,healthCheck_whenTokenizerUnavailable_returnsTokenizerFalse,Kiểm tra health check khi tokenizer chưa sẵn sàng,"- Target: `app.py::health_check()`
+- Set `token_counter = None`
+- Gọi `GET /`","- HTTP 200
+- JSON chứa `tokenizer_loaded=false`
+- Service vẫn hoạt động bình thường",Pass,,
+UT_CS_APP_003,ChatbotAppTest,generate_withValidResponseKey_returns200AndMetrics,Kiểm tra luồng gọi LLM non-streaming thành công khi upstream trả key `response`,"- Target: `app.py::generate()`
+- POST `/generate` với payload hợp lệ gồm `diagram`, `question`, `history`
+- Mock `requests.post().json()` trả `{""response"": ""AI answer""}`
+- Mock `token_counter.count_tokens()` trả input/output tokens hợp lệ","- HTTP 200
+- Response giữ nguyên nội dung upstream và được gắn thêm object `metrics`
+- `db.insert_metrics()` gọi 1 lần với `status=""success""`
+- [CheckDB] Log metrics được chuẩn bị lưu với `total_tokens = input_tokens + output_tokens`",Pass,,
+UT_CS_APP_004,ChatbotAppTest,generate_withOutputKey_returns200AndPreservesOutput,Kiểm tra luồng thành công khi upstream trả key `output` thay vì `response`,"- Target: `app.py::generate()`
+- POST `/generate`
+- Mock upstream trả `{""output"": ""### Response: create: [] delete: [] tomtat: done""}`","- HTTP 200
+- `output_text` được lấy từ key `output`
+- Metrics được gắn vào response
+- `db.insert_metrics()` được gọi",Pass,,
+UT_CS_APP_005,ChatbotAppTest,generate_whenTimeout_returns504AndStoresTimeoutMetric,Kiểm tra xử lý timeout từ upstream LLM/Kaggle,"- Target: `app.py::generate()`
+- POST `/generate`
+- Mock `requests.post` ném `requests.Timeout`","- HTTP 504 Gateway Timeout
+- JSON chứa `error=""Request timeout""`
+- `db.insert_metrics()` được gọi với `status=""timeout""`
+- [CheckDB] Bản ghi lỗi timeout được lưu",Pass,,
+UT_CS_APP_006,ChatbotAppTest,generate_whenUpstreamJsonMalformed_returns500AndStoresErrorMetric,Kiểm tra xử lý khi upstream trả JSON lỗi hoặc parse JSON thất bại,"- Target: `app.py::generate()`
+- POST `/generate`
+- Mock `response.json()` ném `ValueError` hoặc exception bất kỳ","- HTTP 500
+- JSON chứa trường `error`
+- `db.insert_metrics()` được gọi với `status=""error""`
+- [CheckDB] Bản ghi lỗi được lưu kèm `error_message`",Pass,,
+UT_CS_APP_007,ChatbotAppTest,generate_whenHistoryMissing_usesDefaultHistoryValue,Kiểm tra giá trị mặc định của `history` khi request không truyền lịch sử chat,"- Target: `app.py::generate()`
+- POST `/generate` chỉ có `diagram` và `question`
+- Mock upstream trả JSON hợp lệ","- HTTP 200
+- `input_text` dùng chuỗi mặc định `lịch sử: None`
+- `db.insert_metrics()` nhận đúng `input_text` đã ghép",Pass,,
+UT_CS_APP_008,ChatbotAppTest,generate_withInvalidJsonBody_shouldReturn400,Kiểm tra validate request body không hợp lệ ở API generate,"- Target: `app.py::generate()`
+- Gọi `/generate` với body rỗng hoặc `request.get_json()` trả `None`","- NÊN trả HTTP 400 Bad Request [FAIL]
+- NÊN thông báo request body invalid
+- Hiện tại code dễ rơi vào HTTP 500 do gọi `data.get(...)` trên `None`",Fail,Intentional Fail – xfailed trong pytest; phát hiện thiếu validation request body,
+UT_CS_APP_009,ChatbotAppTest,generate_whenUpstreamStatusIs500_shouldPropagateFailure,Kiểm tra propagate lỗi khi upstream trả HTTP 500 nhưng vẫn có JSON body,"- Target: `app.py::generate()`
+- POST `/generate`
+- Mock `requests.post` trả `status_code=500` và `json()` trả `{""error"": ""upstream failed""}`","- NÊN propagate lỗi hoặc trả HTTP 5xx [FAIL]
+- Hiện tại code bỏ qua `response.status_code` và luôn trả HTTP 200 nếu parse JSON thành công",Fail,Intentional Fail – xfailed trong pytest; phát hiện bỏ qua HTTP status của upstream,
+UT_CS_APP_010,ChatbotAppTest,generateStream_withPrompt_returnsEventStreamAndStoresMetrics,Kiểm tra streaming thành công khi request dùng field `prompt`,"- Target: `app.py::generate_stream()`
+- POST `/generate-stream` với `prompt`
+- Mock `requests.post(..., stream=True)` trả nhiều dòng SSE JSON hợp lệ","- HTTP 200 với `mimetype=text/event-stream`
+- Các chunk được yield đúng thứ tự
+- `db.insert_metrics()` được gọi sau khi stream hoàn tất với `status=""success""`",Pass,,
+UT_CS_APP_011,ChatbotAppTest,generateStream_whenChunkMalformed_skipsBadChunkAndContinues,Kiểm tra parser bỏ qua chunk `data:` malformed nhưng stream vẫn tiếp tục,"- Target: `app.py::generate_stream()`
+- Mock stream chứa 1 chunk JSON lỗi xen giữa các chunk hợp lệ","- Service không crash
+- Các chunk hợp lệ phía sau vẫn được yield
+- Metrics vẫn được lưu khi stream kết thúc",Pass,,
+UT_CS_APP_012,ChatbotAppTest,generateStream_whenStreamRaisesException_storesErrorMetric,Kiểm tra xử lý khi upstream streaming ném exception giữa chừng,"- Target: `app.py::generate_stream()`
+- Mock `iter_lines()` ném exception sau 1 vài chunk","- Stream dừng
+- `db.insert_metrics()` được gọi với `status=""error""`
+- [CheckDB] Có log lỗi stream kèm `error_message`",Pass,,
+UT_CS_APP_013,ChatbotAppTest,setKaggleUrl_withValidUrl_updatesGlobalUrl,Kiểm tra cập nhật thành công Kaggle API URL,"- Target: `app.py::set_kaggle_url()`
+- POST `/set-kaggle-url` với `{""url"": ""https://abc.ngrok.app/""}`","- HTTP 200
+- Biến global `KAGGLE_API_URL` được cập nhật thành `https://abc.ngrok.app`
+- Dấu `/` cuối bị loại bỏ",Pass,,
+UT_CS_APP_014,ChatbotAppTest,getMetrics_withDefaultLimit_returnsMetricsAndStatistics,Kiểm tra lấy danh sách metrics với limit mặc định,"- Target: `app.py::get_metrics()`
+- Gọi `GET /metrics`
+- Mock DB connection/cursor trả danh sách metrics và statistics","- HTTP 200
+- Query metrics dùng `LIMIT 10`
+- JSON có 2 key: `metrics`, `statistics`",Pass,,
+UT_CS_APP_015,ChatbotAppTest,getMetricDetail_whenRecordExists_returnsRecord,Kiểm tra lấy chi tiết một metric record khi bản ghi tồn tại,"- Target: `app.py::get_metric_detail()`
+- Gọi `GET /metrics/1`
+- Mock `fetchone()` trả record có `id=1`","- HTTP 200
+- JSON trả đúng record chi tiết",Pass,,
+UT_CS_DB_001,ChatbotDatabaseTest,getConnection_withIncludeDb_returnsConnection,Kiểm tra tạo kết nối MySQL thành công khi include database,"- Target: `database.py::get_connection()`
+- Mock `mysql.connector.connect` trả connection object
+- Gọi `get_connection()` mặc định","- Hàm trả về connection object không null
+- Config truyền vào có key `database=""schema_chatbot""`",Pass,,
+UT_CS_DB_002,ChatbotDatabaseTest,initDatabase_whenConnectionsValid_createsSchemaAndTable,Kiểm tra khởi tạo database và bảng `chat_metrics` thành công,"- Target: `database.py::init_database()`
+- Mock `get_connection(include_db=False)` và `get_connection()` trả connection/cursor hợp lệ","- Hàm trả `True`
+- Thực hiện `CREATE DATABASE IF NOT EXISTS`
+- Thực hiện `CREATE TABLE IF NOT EXISTS chat_metrics`
+- `commit()` được gọi",Pass,,
+UT_CS_DB_003,ChatbotDatabaseTest,insertMetrics_withValidPayload_persistsTotalTokens,Kiểm tra lưu metrics thành công và tính đúng `total_tokens`,"- Target: `database.py::insert_metrics()`
+- Gọi `insert_metrics(input_tokens=120, output_tokens=80, ...)`
+- Mock cursor/connection hợp lệ","- Hàm trả `True`
+- Query insert được gọi với `total_tokens=200`
+- `commit()` được gọi
+- [CheckDB] Dữ liệu metrics được persist đúng cấu trúc",Pass,,
+UT_CS_DB_004,ChatbotDatabaseTest,insertMetrics_whenConnectionUnavailable_returnsFalse,Kiểm tra xử lý khi không kết nối được DB ở bước insert,"- Target: `database.py::insert_metrics()`
+- Mock `get_connection()` trả `None`","- Hàm trả `False`
+- Không ném exception ra ngoài",Pass,,
+UT_CS_TKN_001,TokenCounterTest,countTokens_withValidTokenizer_returnsTokenCount,Kiểm tra đếm token thành công với tokenizer hợp lệ,"- Target: `token_counter.py::count_tokens()`
+- Mock `self.tokenizer.tokenize()` trả list 5 token
+- Input: `""hello world""`","- Hàm trả `5`",Pass,,
+UT_CS_TKN_002,TokenCounterTest,countTokens_whenTextEmpty_returnsZero,Kiểm tra trả 0 khi input text rỗng hoặc `None`,"- Target: `token_counter.py::count_tokens()`
+- Input: `""""` và `None`","- Hàm trả `0` trong cả 2 trường hợp",Pass,,
+UT_CS_TKN_003,TokenCounterTest,countTokens_whenTokenizerThrows_usesFallbackEstimate,Kiểm tra fallback estimate khi tokenizer lỗi trong lúc tokenize,"- Target: `token_counter.py::count_tokens()`
+- Mock `self.tokenizer.tokenize()` ném exception
+- Input: `""a b c d""`","- Hàm không crash
+- Trả giá trị ước lượng `len(text.split()) * 1.3`",Pass,,
+UT_CS_TKN_004,TokenCounterTest,initWithoutHFToken_shouldSetTokenizerToNone,Kiểm tra object TokenCounter vẫn an toàn khi không có `HF_TOKEN`,"- Target: `token_counter.py::__init__()`
+- Khởi tạo `TokenCounter(hf_token=None)` trong môi trường không có `HF_TOKEN`","- NÊN có `self.tokenizer = None` [FAIL]
+- NÊN tránh trạng thái thiếu attribute `tokenizer`
+- Hiện tại code có thể không set `self.tokenizer` nếu không có token",Fail,Intentional Fail – xfailed trong pytest; phát hiện lỗi khởi tạo tokenizer khi thiếu HF token,
