@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">account-service</a> &gt; <a href="index.source.html" class="el_package">com.example.accountservice.controller</a> &gt; <span class="el_source">AccountController.java</span></div><h1>AccountController.java</h1><pre class="source lang-java linenums">package com.example.accountservice.controller;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.accountservice.annotation.RequireRole;
+import com.example.accountservice.dto.AccountCreateRequest;
+import com.example.accountservice.dto.AccountDTO;
+import com.example.accountservice.dto.AccountSearchDTO;
+import com.example.accountservice.dto.PasswordChangeDTO;
+import com.example.accountservice.enums.Role;
+import com.example.accountservice.model.Account;
+import com.example.accountservice.service.AccountService;
+
+import jakarta.validation.Valid;
+import jakarta.ws.rs.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
+
+<span class="fc" id="L37">@Slf4j</span>
+@RestController
+@RequestMapping(&quot;/account&quot;)
+<span class="fc" id="L40">public class AccountController {</span>
+
+    @Autowired
+    private AccountService accountService;
+
+    /**
+     * Tìm kiếm tài khoản theo từ khóa, theo filter role hoặc position với phân
+     * trang
+     * Quyền: Chỉ ADMIN mới được sử dụng
+     * 
+     * Input:
+     * - keyword (optional): Từ khóa tìm kiếm trong username, tên, email, cccd, sdt
+     * - role (optional): Lọc theo vai trò (STUDENT, TEACHER, ADMIN)
+     * - positionIds (optional): Danh sách ID các vị trí
+     * - searchFields (optional): Các trường cụ thể muốn tìm kiếm theo keyword
+     * - pageable: Thông tin phân trang (page, size, sort)
+     * 
+     * Output:
+     * - Page&lt;Account&gt;: Danh sách tài khoản phân trang với metadata
+     */
+    @GetMapping(&quot;/search&quot;)
+    @RequireRole({ Role.ADMIN })
+    public Page&lt;Account&gt; searchAccounts(
+            @RequestParam(value = &quot;keyword&quot;, required = false) String keyword,
+            @RequestParam(value = &quot;role&quot;, required = false) Role role,
+            @RequestParam(value = &quot;positionIds&quot;, required = false) List&lt;Long&gt; positionIds,
+            @RequestParam(value = &quot;searchFields&quot;, required = false) List&lt;String&gt; searchFields,
+            Pageable pageable) {
+
+<span class="fc" id="L69">        AccountSearchDTO searchDTO = new AccountSearchDTO();</span>
+<span class="fc" id="L70">        searchDTO.setKeyword(keyword);</span>
+<span class="fc" id="L71">        searchDTO.setRole(role);</span>
+<span class="fc" id="L72">        searchDTO.setPositionIds(positionIds);</span>
+<span class="fc" id="L73">        searchDTO.setSearchFields(searchFields);</span>
+
+<span class="fc" id="L75">        return accountService.universalSearch(searchDTO, pageable);</span>
+    }
+
+    /**
+     * Xóa tài khoản (soft delete)
+     * Chức năng: Xóa mềm tài khoản (set visible = 0)
+     * Quyền: Chỉ ADMIN mới được sử dụng
+     * 
+     * Input:
+     * - id (path variable): ID của tài khoản cần xóa
+     * 
+     * Output:
+     * - String: Thông báo kết quả xóa
+     */
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    @RequireRole({ Role.ADMIN })
+    public String deleteAccount(@PathVariable Long id) {
+<span class="nc" id="L93">        Boolean success = accountService.deleteAccount(id);</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        return success ? &quot;Account Deleted Successfully!&quot; : &quot;An Error Occurred!&quot;;</span>
+    }
+
+    /**
+     * Lấy thông tin tài khoản theo ID
+     * Chức năng: Truy xuất thông tin chi tiết của một tài khoản bất kì
+     * Quyền: ADMIN và TEACHER có thể sử dụng
+     * 
+     * Input:
+     * - id (path variable): ID của tài khoản cần lấy thông tin
+     * 
+     * Output:
+     * - Optional&lt;Account&gt;: Thông tin tài khoản hoặc empty nếu không tìm thấy
+     */
+    @GetMapping(&quot;/{username}&quot;)
+    @RequireRole({ Role.ADMIN, Role.TEACHER })
+    public Optional&lt;Account&gt; getAccountById(@PathVariable String username) {
+<span class="nc" id="L111">        log.info(&quot;get user by username: &quot; + username);</span>
+<span class="nc" id="L112">        return accountService.getAccountByUsername(username);</span>
+    }
+
+    /**
+     * User xem thông tin của chính mình
+     * 
+     * Input:
+     * - X-Username (header): ID của user hiện tại từ JWT token
+     * 
+     * Output:
+     * - Optional&lt;Account&gt;: Thông tin tài khoản của user hiện tại
+     */
+    @GetMapping(&quot;/me&quot;)
+    public Optional&lt;Account&gt; getAccountByMe(@RequestHeader(value = &quot;X-Username&quot;, required = false) String username) {
+
+<span class="nc" id="L127">        log.info(&quot;get user by username: &quot; + username);</span>
+<span class="nc" id="L128">        return accountService.getAccountByUsername(username);</span>
+    }
+
+    /**
+     * Tạo tài khoản mới
+     * Chức năng: Tạo tài khoản mới với username và password tự động sinh
+     * Quyền: Chỉ ADMIN mới được sử dụng
+     * 
+     * Input:
+     * - account (request body): Thông tin tài khoản mới (firstName, lastName, cccd,
+     * role, email,...)
+     * - KHÔNG TRUYỀN VÀO ID, USERNAME, PASSWORD, VISIBLE (Không hiển thị các trường
+     * này ở FE)
+     * - firstName, lastName, cccd bắt buộc phải điền
+     * - Username sẽ được tự động sinh từ họ tên
+     * - Password mặc định là &quot;123456Aa@&quot;
+     * 
+     * Output:
+     * - Account: Thông tin tài khoản vừa được tạo (bao gồm username đã sinh)
+     */
+    @PostMapping
+    @RequireRole({ Role.ADMIN })
+    public Account createAccount(@Valid @RequestBody AccountCreateRequest request) {
+<span class="nc" id="L151">        Account account = new Account();</span>
+<span class="nc" id="L152">        account.setCccd(request.getCccd());</span>
+<span class="nc" id="L153">        account.setFirstName(request.getFirstName());</span>
+<span class="nc" id="L154">        account.setLastName(request.getLastName());</span>
+<span class="nc" id="L155">        Account savedAccount = accountService.createAccount(account);</span>
+<span class="nc" id="L156">        return savedAccount;</span>
+    }
+
+    /**
+     * Cập nhật thông tin tài khoản
+     * Chức năng: Cập nhật thông tin tài khoản (không bao gồm password)
+     * Quyền: Chỉ ADMIN mới được sử dụng
+     * 
+     * Input:
+     * - id (path variable): ID của tài khoản cần cập nhật
+     * - account (request body): Thông tin mới của tài khoản
+     * 
+     * Output:
+     * - Account: Thông tin tài khoản sau khi cập nhật
+     */
+    @PutMapping(&quot;/{id}&quot;)
+    @RequireRole({ Role.ADMIN })
+    public Account updateAccount(@PathVariable Long id, @Valid @RequestBody Account account) {
+<span class="nc" id="L174">        account.setId((id));</span>
+<span class="nc" id="L175">        return accountService.updateAccount(account);</span>
+    }
+
+    /**
+     * USER HIỆN KHÔNG THỂ ĐỔI PASSWORD (có thể cập nhật lại sau)
+     * --- Đổi password của Admin và User khác nhau ở Input: Admin không cần
+     * oldPassword ---
+     * 
+     * User đổi password của chính mình
+     * Chức năng: Cho phép user thay đổi password của chính mình
+     * Quyền: Tất cả user đã đăng nhập
+     * 
+     * Input:
+     * - X-Username (header): ID của user hiện tại từ JWT token
+     * - passwordChangeDTO (request body):
+     * - oldPassword: Mật khẩu cũ (bắt buộc)
+     * - newPassword: Mật khẩu mới (tối thiểu 6 ký tự)
+     * - confirmPassword: Xác nhận mật khẩu mới
+     * 
+     * Output:
+     * - Boolean: true nếu đổi password thành công, false nếu thất bại
+     */
+    // @PutMapping(&quot;/change-password&quot;)
+    // public Boolean updatePasswordByUser(
+    // @RequestHeader(value = &quot;X-Username&quot;, required = false) String username,
+    // @Valid @RequestBody PasswordChangeDTO passwordChangeDTO) {
+
+    // if (passwordChangeDTO.getOldPassword() == null ||
+    // passwordChangeDTO.getOldPassword().isEmpty()) {
+    // throw new IllegalArgumentException(&quot;Old password must not be empty&quot;);
+    // }
+    //
+    // return accountService.updatePasswordByUser(accountId, passwordChangeDTO);
+    // }
+
+    /**
+     * Lấy thông tin nhiều tài khoản theo danh sách ID
+     * Chức năng: Truy xuất name của nhiều tài khoản cùng lúc
+     * 
+     * Input:
+     * - ids (query parameter): Danh sách ID các tài khoản cần lấy thông tin (e.g.,
+     * ?ids=1&amp;ids=2&amp;ids=3)
+     * 
+     * Output:
+     * - List&lt;Account&gt;: Danh sách thông tin tài khoản
+     */
+    @GetMapping(&quot;/bulk&quot;)
+    @RequireRole({ Role.ADMIN, Role.TEACHER, Role.STUDENT })
+    public List&lt;Account&gt; getAccountsByIds(@RequestParam(&quot;ids&quot;) List&lt;Long&gt; ids) {
+<span class="nc" id="L224">        log.info(&quot;Get accounts by ids: &quot; + ids);</span>
+
+<span class="nc bnc" id="L226" title="All 4 branches missed.">        if (ids == null || ids.isEmpty()) {</span>
+<span class="nc" id="L227">            return Collections.emptyList();</span>
+        }
+
+        // Remove duplicates and null values
+<span class="nc" id="L231">        List&lt;Long&gt; uniqueIds = ids.stream()</span>
+<span class="nc" id="L232">                .filter(Objects::nonNull)</span>
+<span class="nc" id="L233">                .distinct()</span>
+<span class="nc" id="L234">                .collect(Collectors.toList());</span>
+
+<span class="nc" id="L236">        return accountService.getAccountsByIds(uniqueIds);</span>
+    }
+
+    /*
+     * Lấy thông tin tài khoản theo số cccd
+     */
+    @GetMapping(&quot;/student/{cccd}&quot;)
+    @RequireRole({ Role.ADMIN, Role.TEACHER })
+    public ResponseEntity&lt;Account&gt; getAccountByCccd(@PathVariable String cccd) {
+<span class="nc" id="L245">        return accountService.findStudentByCccd(cccd)</span>
+<span class="nc" id="L246">                .map(ResponseEntity::ok)</span>
+<span class="nc" id="L247">                .orElse(ResponseEntity.notFound().build());</span>
+    }
+
+    /*
+     * Lấy thông tin tài khoản theo số cccd
+     */
+    @GetMapping(&quot;/teacher/{cccd}&quot;)
+    @RequireRole({ Role.ADMIN, Role.TEACHER })
+    public ResponseEntity&lt;Account&gt; getTeacherByCccd(@PathVariable String cccd) {
+<span class="nc" id="L256">        return accountService.findTeacherByCccd(cccd)</span>
+<span class="nc" id="L257">                .map(ResponseEntity::ok)</span>
+<span class="nc" id="L258">                .orElse(ResponseEntity.notFound().build());</span>
+    }
+
+    /*
+     * Lấy thông tin tài khoản theo email
+     */
+    @GetMapping(&quot;/email/{email}&quot;)
+    @RequireRole({ Role.ADMIN, Role.STUDENT })
+    public ResponseEntity&lt;AccountDTO&gt; getAccountByEmail(@PathVariable String email) {
+<span class="nc" id="L267">        Account acc = accountService.findByEmail(email)</span>
+<span class="nc" id="L268">                .orElseThrow(() -&gt; new NotFoundException(&quot;Not found account&quot;));</span>
+
+<span class="nc" id="L270">        AccountDTO accountDTO = new AccountDTO();</span>
+<span class="nc" id="L271">        accountDTO.setUsername(acc.getUsername());</span>
+<span class="nc" id="L272">        accountDTO.setName(acc.getLastName() + &quot; &quot; + acc.getFirstName());</span>
+<span class="nc" id="L273">        accountDTO.setPicture(acc.getPicture());</span>
+
+<span class="nc" id="L275">        return ResponseEntity.ok(accountDTO);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

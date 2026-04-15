@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+account-service,com.example.accountservice.util,JwtUtil,135,7,12,0,46,2,12,2,6,2
+account-service,com.example.accountservice.util,ValidateUtil,70,19,19,3,10,8,13,5,2,5
+account-service,com.example.accountservice.util,UsernameGenerator,11,113,6,8,3,24,6,7,0,6
+account-service,com.example.accountservice.service,AccountService,159,190,26,10,27,43,23,12,5,12
+account-service,com.example.accountservice.service,OAuth2UserService,199,7,20,0,47,2,15,2,5,2
+account-service,com.example.accountservice.service,RedisTokenService,101,7,0,0,26,2,4,2,4,2
+account-service,com.example.accountservice.annotation,RoleCheckAspect,3,27,1,3,2,6,1,3,0,2
+account-service,com.example.accountservice.controller,AuthController,60,7,4,0,15,2,3,2,1,2
+account-service,com.example.accountservice.controller,AccountController,65,108,3,3,15,28,7,9,4,9

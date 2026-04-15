@@ -162,4 +162,82 @@ public class AccountServiceTest {
         // Bảo đảm Message văng ra phải giống hệt Code Service bắt
         assertTrue(exception.getMessage().contains("Account not found with id: 999999999"));
     }
+
+    @Test
+    @DisplayName("UT_SERVICE_001: Lỗi tạo tài khoản do trùng lặp Email")
+    void testCreateAccount_DuplicateEmail_ThrowsException() {
+        jdbcTemplate.execute(
+                "INSERT INTO account (cccd, email, username, password, visible) VALUES ('2233445566', 'duplicate@gmail.com', 'user_email', '123456', 1)");
+
+        Account newAccount = new Account();
+        newAccount.setCccd("1122334455");
+        newAccount.setEmail("duplicate@gmail.com");
+
+        assertThrows(IllegalArgumentException.class, () -> accountService.createAccount(newAccount));
+    }
+
+    @Test
+    @DisplayName("UT_SERVICE_002: Cập nhật tài khoản thành công")
+    void testUpdateAccount_Success() {
+        Account existing = new Account();
+        existing.setUsername("update_test");
+        existing.setCccd("77889900");
+        existing.setVisible(1);
+        existing.setPassword("oldpass");
+        existing = accountRepository.save(existing);
+
+        existing.setFirstName("NewFirstName");
+        Account updated = accountService.updateAccount(existing);
+
+        assertEquals("NewFirstName", updated.getFirstName());
+        assertEquals("oldpass", updated.getPassword());
+    }
+
+    @Test
+    @DisplayName("UT_SERVICE_003: Lỗi cập nhật do trùng CCCD")
+    void testUpdateAccount_DuplicateCccd_ThrowsException() {
+        Account a1 = new Account();
+        a1.setUsername("u1"); a1.setCccd("111"); a1.setVisible(1);
+        accountRepository.save(a1);
+
+        Account a2 = new Account();
+        a2.setUsername("u2"); a2.setCccd("222"); a2.setVisible(1);
+        a2 = accountRepository.save(a2);
+
+        a2.setCccd("111"); // Trùng với a1
+        final Account target = a2;
+        assertThrows(IllegalArgumentException.class, () -> accountService.updateAccount(target));
+    }
+
+    @Test
+    @DisplayName("UT_SERVICE_004: Chặn xóa tài khoản đã xóa rồi")
+    void testDeleteAccount_AlreadyDeleted_ThrowsException() {
+        Account existing = new Account();
+        existing.setVisible(0);
+        existing = accountRepository.save(existing);
+
+        final Long id = existing.getId();
+        assertThrows(IllegalArgumentException.class, () -> accountService.deleteAccount(id));
+    }
+
+    @Test
+    @DisplayName("UT_SERVICE_005: Universal Search ném Exception khi không thấy kết quả")
+    void testUniversalSearch_NoResults_ThrowsException() {
+        com.example.accountservice.dto.AccountSearchDTO search = new com.example.accountservice.dto.AccountSearchDTO();
+        search.setKeyword("NON_EXISTENT_KEYWORD");
+        
+        org.springframework.data.domain.Pageable pageable = org.springframework.data.domain.PageRequest.of(0, 10);
+        
+        assertThrows(EntityNotFoundException.class, () -> accountService.universalSearch(search, pageable));
+    }
+
+    @Test
+    @DisplayName("UT_SERVICE_006: Lấy tài khoản theo danh sách ID")
+    void testGetAccountsByIds() {
+        Account a1 = new Account(); a1.setVisible(1); a1 = accountRepository.save(a1);
+        Account a2 = new Account(); a2.setVisible(1); a2 = accountRepository.save(a2);
+        
+        java.util.List<Account> results = accountService.getAccountsByIds(java.util.Arrays.asList(a1.getId(), a2.getId()));
+        assertEquals(2, results.size());
+    }
 }
