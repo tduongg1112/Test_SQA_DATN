@@ -1,0 +1,36 @@
+# OS files
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
+
+# Python caches and virtual environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Python test and coverage artifacts
+.coverage
+.coverage.*
+htmlcov/
+report.html
+
+# Node test and coverage artifacts
+coverage/
+*.tsbuildinfo
+
+# Environment and local secret files
+.env
+.env.*
+*.local
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Personal working documents
+document_tduong/
