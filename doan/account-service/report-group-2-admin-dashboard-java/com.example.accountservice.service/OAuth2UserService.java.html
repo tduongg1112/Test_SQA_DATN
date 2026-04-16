@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OAuth2UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">account-service</a> &gt; <a href="index.source.html" class="el_package">com.example.accountservice.service</a> &gt; <span class="el_source">OAuth2UserService.java</span></div><h1>OAuth2UserService.java</h1><pre class="source lang-java linenums">package com.example.accountservice.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Service;
+
+import com.example.accountservice.enums.Role;
+import com.example.accountservice.model.Account;
+import com.example.accountservice.model.OAuth2UserInfo;
+import com.example.accountservice.repository.AccountRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.Optional;
+
+<span class="fc" id="L19">@Slf4j</span>
+@Service
+<span class="fc" id="L21">public class OAuth2UserService extends DefaultOAuth2UserService {</span>
+
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Override
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+<span class="nc" id="L28">        OAuth2User oauth2User = super.loadUser(userRequest);</span>
+
+        try {
+<span class="nc" id="L31">            return processOAuth2User(userRequest, oauth2User);</span>
+<span class="nc" id="L32">        } catch (Exception ex) {</span>
+<span class="nc" id="L33">            log.error(&quot;Error processing OAuth2 user: {}&quot;, ex.getMessage());</span>
+<span class="nc" id="L34">            throw new OAuth2AuthenticationException(ex.getMessage());</span>
+        }
+    }
+
+    private OAuth2User processOAuth2User(OAuth2UserRequest userRequest, OAuth2User oauth2User) {
+<span class="nc" id="L39">        OAuth2UserInfo userInfo = new OAuth2UserInfo(oauth2User.getAttributes());</span>
+
+<span class="nc" id="L41">        String provider = userRequest.getClientRegistration().getRegistrationId(); // &quot;google&quot;</span>
+
+        // Tìm hoặc tạo account
+<span class="nc" id="L44">        Optional&lt;Account&gt; accountOpt = accountRepository.findByEmailAndVisible(userInfo.getEmail(), 1);</span>
+        Account account;
+
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (accountOpt.isEmpty()) {</span>
+            // Tạo account mới từ Google
+<span class="nc" id="L49">            account = createAccountFromOAuth2(userInfo, provider);</span>
+<span class="nc" id="L50">            log.info(&quot;Created new account from OAuth2: {}&quot;, account.getEmail());</span>
+        } else {
+            // Cập nhật thông tin nếu cần
+<span class="nc" id="L53">            account = accountOpt.get();</span>
+<span class="nc" id="L54">            account = updateAccountFromOAuth2(account, userInfo, provider);</span>
+<span class="nc" id="L55">            log.info(&quot;Updated existing account from OAuth2: {}&quot;, account.getEmail());</span>
+        }
+
+<span class="nc" id="L58">        return oauth2User;</span>
+    }
+
+    private Account createAccountFromOAuth2(OAuth2UserInfo userInfo, String provider) {
+<span class="nc" id="L62">        Account account = new Account();</span>
+
+<span class="nc" id="L64">        account.setEmail(userInfo.getEmail());</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        account.setFirstName(userInfo.getGivenName() != null ? userInfo.getGivenName() : &quot;&quot;);</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        account.setLastName(userInfo.getFamilyName() != null ? userInfo.getFamilyName() : &quot;&quot;);</span>
+<span class="nc" id="L67">        account.setGoogleId(userInfo.getSub());</span>
+<span class="nc" id="L68">        account.setPicture(userInfo.getPicture());</span>
+<span class="nc" id="L69">        account.setProvider(provider);</span>
+<span class="nc" id="L70">        account.setRole(Role.STUDENT); // Mặc định là STUDENT</span>
+<span class="nc" id="L71">        account.setVisible(1);</span>
+
+        // Tạo username từ email
+<span class="nc" id="L74">        String username = userInfo.getEmail().split(&quot;@&quot;)[0];</span>
+<span class="nc" id="L75">        account.setUsername(ensureUniqueUsername(username));</span>
+
+        // OAuth2 không cần password
+<span class="nc" id="L78">        account.setPassword(null);</span>
+
+<span class="nc" id="L80">        return accountRepository.save(account);</span>
+    }
+
+    private Account updateAccountFromOAuth2(Account account, OAuth2UserInfo userInfo, String provider) {
+<span class="nc" id="L84">        boolean needsUpdate = false;</span>
+
+        // Cập nhật Google ID nếu chưa có
+<span class="nc bnc" id="L87" title="All 4 branches missed.">        if (account.getGoogleId() == null &amp;&amp; userInfo.getSub() != null) {</span>
+<span class="nc" id="L88">            account.setGoogleId(userInfo.getSub());</span>
+<span class="nc" id="L89">            needsUpdate = true;</span>
+        }
+
+        // Cập nhật picture
+<span class="nc bnc" id="L93" title="All 4 branches missed.">        if (userInfo.getPicture() != null &amp;&amp; !userInfo.getPicture().equals(account.getPicture())) {</span>
+<span class="nc" id="L94">            account.setPicture(userInfo.getPicture());</span>
+<span class="nc" id="L95">            needsUpdate = true;</span>
+        }
+
+        // Cập nhật provider nếu chưa có
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if (account.getProvider() == null) {</span>
+<span class="nc" id="L100">            account.setProvider(provider);</span>
+<span class="nc" id="L101">            needsUpdate = true;</span>
+        }
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (needsUpdate) {</span>
+<span class="nc" id="L105">            return accountRepository.save(account);</span>
+        }
+
+<span class="nc" id="L108">        return account;</span>
+    }
+
+    private String ensureUniqueUsername(String baseUsername) {
+<span class="nc" id="L112">        String username = baseUsername;</span>
+<span class="nc" id="L113">        int counter = 1;</span>
+
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        while (accountRepository.existsByUsernameAndVisible(username, 1)) {</span>
+<span class="nc" id="L116">            username = baseUsername + counter;</span>
+<span class="nc" id="L117">            counter++;</span>
+        }
+
+<span class="nc" id="L120">        return username;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

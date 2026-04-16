@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">account-service</a> &gt; <a href="index.source.html" class="el_package">com.example.accountservice.util</a> &gt; <span class="el_source">JwtUtil.java</span></div><h1>JwtUtil.java</h1><pre class="source lang-java linenums">package com.example.accountservice.util;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import com.example.accountservice.enums.Role;
+import com.example.accountservice.model.Account;
+
+import javax.crypto.SecretKey;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+<span class="fc" id="L21">@Slf4j</span>
+@Component
+<span class="fc" id="L23">public class JwtUtil {</span>
+
+    @Value(&quot;${jwt.secret:mySecretKeyForJwtTokenThatShouldBeAtLeast256BitsLongToEnsureSecurityAndProperFunctioning}&quot;)
+    private String jwtSecret;
+
+    @Value(&quot;${jwt.expiration:86400000}&quot;) // 24 hours in milliseconds
+    private long jwtExpiration;
+
+    private SecretKey getSigningKey() {
+<span class="nc" id="L32">        return Keys.hmacShaKeyFor(jwtSecret.getBytes());</span>
+    }
+
+    public String generateToken(Account account) {
+<span class="nc" id="L36">        String username = account.getUsername();</span>
+<span class="nc" id="L37">        Date now = new Date();</span>
+<span class="nc" id="L38">        Date expiryDate = new Date(now.getTime() + jwtExpiration);</span>
+<span class="nc" id="L39">        String jwtId = UUID.randomUUID().toString(); // Tạo unique JWT ID</span>
+
+<span class="nc" id="L41">        return Jwts.builder()</span>
+<span class="nc" id="L42">                .subject(username) // Dùng userId làm subject thay vì username</span>
+                // .claim(&quot;userId&quot;, userId)
+<span class="nc" id="L44">                .claim(&quot;username&quot;, account.getUsername())</span>
+<span class="nc" id="L45">                .claim(&quot;role&quot;, account.getRole())</span>
+<span class="nc" id="L46">                .id(jwtId) // Thêm JWT ID</span>
+<span class="nc" id="L47">                .issuedAt(now)</span>
+<span class="nc" id="L48">                .expiration(expiryDate)</span>
+<span class="nc" id="L49">                .signWith(getSigningKey())</span>
+<span class="nc" id="L50">                .compact();</span>
+    }
+
+    public String getUsernameFromToken(String token) {
+<span class="nc" id="L54">        Claims claims = Jwts.parser()</span>
+<span class="nc" id="L55">                .verifyWith(getSigningKey())</span>
+<span class="nc" id="L56">                .build()</span>
+<span class="nc" id="L57">                .parseSignedClaims(token)</span>
+<span class="nc" id="L58">                .getPayload();</span>
+<span class="nc" id="L59">        return claims.getSubject(); // Sẽ trả về userId dưới dạng string</span>
+    }
+
+    public Long getUserIdFromToken(String token) {
+<span class="nc" id="L63">        Claims claims = Jwts.parser()</span>
+<span class="nc" id="L64">                .verifyWith(getSigningKey())</span>
+<span class="nc" id="L65">                .build()</span>
+<span class="nc" id="L66">                .parseSignedClaims(token)</span>
+<span class="nc" id="L67">                .getPayload();</span>
+<span class="nc" id="L68">        return claims.get(&quot;userId&quot;, Long.class);</span>
+    }
+
+    // Method để lấy JWT ID
+    public String getJwtIdFromToken(String token) {
+<span class="nc" id="L73">        Claims claims = Jwts.parser()</span>
+<span class="nc" id="L74">                .verifyWith(getSigningKey())</span>
+<span class="nc" id="L75">                .build()</span>
+<span class="nc" id="L76">                .parseSignedClaims(token)</span>
+<span class="nc" id="L77">                .getPayload();</span>
+<span class="nc" id="L78">        return claims.getId();</span>
+    }
+
+    public String extractDomain(String url) {
+<span class="nc bnc" id="L82" title="All 4 branches missed.">        if (url == null || url.isEmpty()) {</span>
+<span class="nc" id="L83">            return null;</span>
+        }
+
+        try {
+            // Nếu người dùng truyền thiếu http/https thì thêm tạm
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            if (!url.startsWith(&quot;http://&quot;) &amp;&amp; !url.startsWith(&quot;https://&quot;)) {</span>
+<span class="nc" id="L89">                url = &quot;http://&quot; + url;</span>
+            }
+
+<span class="nc" id="L92">            URI uri = new URI(url);</span>
+<span class="nc" id="L93">            String host = uri.getHost();</span>
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (host == null) {</span>
+<span class="nc" id="L96">                return null;</span>
+            }
+
+            // Bỏ &quot;www.&quot; nếu có
+<span class="nc bnc" id="L100" title="All 2 branches missed.">            if (host.startsWith(&quot;www.&quot;)) {</span>
+<span class="nc" id="L101">                host = host.substring(4);</span>
+            }
+
+<span class="nc" id="L104">            return host;</span>
+
+<span class="nc" id="L106">        } catch (URISyntaxException e) {</span>
+<span class="nc" id="L107">            System.err.println(&quot;Invalid URL format: &quot; + url);</span>
+<span class="nc" id="L108">            return null;</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
