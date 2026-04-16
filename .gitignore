@@ -34,3 +34,14 @@ coverage/
 
 # Personal working documents
 document_tduong/
+
+# Ignore all markdown files except README.md (keeps project documentation)
+*.md
+!README.md
+
+# Ignore local documents not related to project code
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+*.csv
