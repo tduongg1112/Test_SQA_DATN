@@ -1,0 +1,243 @@
+{
+  "info": {
+    "name": "FR-01: Authentication & Access Control (Automated)",
+    "description": "Comprehensive tests covering Login, JWT Tampering, RBAC, and DB Teardown.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. [Setup] Successful Login (Generate JWT)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// 1. Verify exact status code",
+              "pm.test(\"Status code is 200 OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// 2. Parse response and verify token presence",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"JWT Token exists in response\", function () {",
+              "    pm.expect(jsonData.token).to.not.be.undefined;",
+              "});",
+              "",
+              "// 3. Save JWT Token and Account ID into environment variables",
+              "pm.environment.set(\"jwt_token\", jsonData.token);",
+              "if (jsonData.id) {",
+              "    pm.environment.set(\"test_user_id\", jsonData.id);",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/account/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "login"]
+        }
+      }
+    },
+    {
+      "name": "2. Incorrect Password",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401 Unauthorized\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"student_test\",\n  \"password\": \"WrongPassword!\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/account/login",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "login"]
+        }
+      }
+    },
+    {
+      "name": "3. RBAC: STUDENT calling ADMIN API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 403 Forbidden\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              "",
+              "pm.test(\"Verify RoleCheckAspect throws 'Permission denied'\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Permission denied\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/account/search",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "search"]
+        }
+      }
+    },
+    {
+      "name": "4. Expired JWT Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401 Unauthorized\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{expired_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/account/me",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "me"]
+        }
+      }
+    },
+    {
+      "name": "5. Forged Signature JWT",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 401 Unauthorized\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{forged_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/account/me",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "me"]
+        }
+      }
+    },
+    {
+      "name": "6. [Teardown] Database Rollback",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200 OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Account Controller confirms deletion\", function() {",
+              "    // Assert exact string matches AccountController logic",
+              "    pm.expect(pm.response.text()).to.include(\"Account Deleted Successfully!\");",
+              "});",
+              "",
+              "// 4. Memory cleanup after testing sequence",
+              "pm.environment.unset(\"jwt_token\");",
+              "pm.environment.unset(\"test_user_id\");"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{admin_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/account/{{test_user_id}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "{{test_user_id}}"]
+        }
+      }
+    }
+  ]
+}

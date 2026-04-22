@@ -1,0 +1,7 @@
+limit,start_date,end_date,expected_status,scenario_description
+10,2024-01-01,2024-12-31,200,Lấy metrics hợp lệ cơ bản
+5,2024-10-01,2024-10-31,200,Truyền limit số lượng ít phân trang
+100,,,200,Truyền limit số lượng lớn (Không có date)
+abc,2024-10-01,2024-10-31,400,[INTENDED FAIL] Gài Bug truyền mã chữ vào số
+-5,,,400,[BVA BUG] Limit số âm gây lỗi MySQL
+, , ,200,Bỏ trống tât cả tham số để test default

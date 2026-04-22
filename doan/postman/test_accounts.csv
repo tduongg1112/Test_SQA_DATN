@@ -1,0 +1,6 @@
+username,password,expected_status,scenario_description
+admin@system.com,ValidAdmin@123,200,Đăng nhập thành công sinh JWT (Admin)
+student_123,Student@123,200,Đăng nhập thành công sinh JWT (Student)
+admin@system.com,SaiPass123!,401,Nhập sai mật khẩu của khóa tài khoản hợp lệ
+ghost_user_123,AnyPassword2024,401,Đăng nhập với tài khoản không hề tồn tại
+student_123,,400,Bỏ trống trường mật khẩu DTO (Lỗi Validation rỗng)

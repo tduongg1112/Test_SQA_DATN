@@ -1,0 +1,161 @@
+{
+  "info": {
+    "name": "FR-06: System Admin (Dashboard Stats)",
+    "description": "Test Collection for Dashboard Metrics, Performance, and RBAC.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Lấy Tổng số Sinh Viên (Account Service)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200 OK\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// Validate JSON Structure (Phải xài chuẩn phân trang Spring Boot)",
+              "var jsonData = pm.response.json();",
+              "pm.test(\"JSON Response phải chứa trường totalElements\", function () {",
+              "    pm.expect(jsonData).to.have.property(\"totalElements\");",
+              "});",
+              "",
+              "// Đo lường tốc độ Performance",
+              "pm.test(\"Response time is less than 500ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{admin_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/account/search",
+          "host": ["{{baseUrl}}"],
+          "path": ["account", "search"]
+        }
+      }
+    },
+    {
+      "name": "2. Thống kê Metrics Chatbot (Chat Service)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "var expectedStatus = pm.iterationData.get(\"expected_status\");",
+              "if (!expectedStatus) expectedStatus = 200; // default",
+              "",
+              "pm.test(\"Verify Expected Status Code\", function () {",
+              "    pm.response.to.have.status(expectedStatus);",
+              "});",
+              "",
+              "if (expectedStatus === 200) {",
+              "    var jsonData = pm.response.json();",
+              "    ",
+              "    pm.test(\"JSON chứa Cấu trúc Metrics\", function () {",
+              "        pm.expect(jsonData).to.have.property(\"metrics\");",
+              "        pm.expect(jsonData).to.have.property(\"statistics\");",
+              "    });",
+              "    ",
+              "    pm.test(\"Data thống kê phải chứa total_requests & total_tokens\", function () {",
+              "        pm.expect(jsonData.statistics).to.have.property(\"total_requests\");",
+              "        pm.expect(jsonData.statistics).to.have.property(\"total_tokens_processed\");",
+              "    });",
+              "}",
+              "",
+              "pm.test(\"Performance Load < 500ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{admin_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/metrics?limit={{limit}}&start_date={{start_date}}&end_date={{end_date}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["metrics"],
+          "query": [
+            {
+              "key": "limit",
+              "value": "{{limit}}"
+            },
+            {
+              "key": "start_date",
+              "value": "{{start_date}}"
+            },
+            {
+              "key": "end_date",
+              "value": "{{end_date}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. [BUG TEST] Lỗ hổng Hacker sinh viên (Missing Access Control)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Kỳ vọng hệ thống chặn lỗi (403)\", function () {",
+              "    pm.response.to.have.status(403);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/metrics",
+          "host": ["{{baseUrl}}"],
+          "path": ["metrics"]
+        }
+      }
+    }
+  ]
+}
