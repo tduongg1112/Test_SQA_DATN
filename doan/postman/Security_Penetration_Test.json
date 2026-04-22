@@ -1,0 +1,148 @@
+{
+  "info": {
+    "name": "NFR-02: Security & Penetration Testing",
+    "description": "Bộ Test Kịch bản Tấn công Bảo mật (XSS, SQLi, IDOR) với cơ chế Logic Ngược và Teardown dọn dẹp DB.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. [Payload Attack] Đổi tên Biểu đồ (XSS/SQLi/Overflow)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// LOGIC NGƯỢC: Vì đây là test bảo mật, nếu server trả về 200 OK -> Chứng tỏ hệ thống đã nuốt mã độc -> Test FAILED (Lỗ hổng).",
+              "// Kỳ vọng an toàn: Server phải chặn mã độc và văng lỗi 400 (Bad Request), 403 (Forbidden), hoặc 413 (Payload Too Large).",
+              "",
+              "pm.test(\"BẮT BUỘC CHẶN MÃ ĐỘC (HTTP 4xx/5xx)\", function () {",
+              "    pm.expect(pm.response.code).to.not.equal(200, \"[CẢNH BÁO LỖ HỔNG] Server đã chấp nhận mã độc và lưu vào Database!\");",
+              "    pm.expect(pm.response.code).to.be.oneOf([400, 401, 403, 413, 500]);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{admin_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/schema/2/new-name",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "schema", "2", "new-name"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"newName\": \"{{malicious_payload}}\"\n}"
+        }
+      }
+    },
+    {
+      "name": "2. [IDOR Attack] Sinh viên Tự cấp Quyền Biểu đồ Admin",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Kịch bản: Bắn Token của Sinh viên vào Diagram (ID=2) của Admin.",
+              "// Kỳ vọng: Hệ thống phải phát hiện và chặn lại bằng mã 403 Forbidden.",
+              "",
+              "pm.test(\"Phải chặn Hacker sinh viên leo quyền (HTTP 403)\", function () {",
+              "    pm.expect(pm.response.code).to.equal(403, \"[CRITICAL IDOR BUG] API không check Ownership! Sinh viên đã tự cấp quyền thành công vào dự án của người khác!\");",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/diagram/2/collaborations",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "diagram", "2", "collaborations"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"hacker_student\",\n  \"permission\": \"WRITE\"\n}"
+        }
+      }
+    },
+    {
+      "name": "3. [Teardown] Phục hồi Database (Xóa Mã Độc)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Dọn dẹp DB Thành công (HTTP 200)\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{admin_jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/schema/2/new-name",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "schema", "2", "new-name"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"newName\": \"Clean Restored Diagram\"\n}"
+        }
+      }
+    }
+  ]
+}
