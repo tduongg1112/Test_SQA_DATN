@@ -1,2 +1,4 @@
+com\sqa\doan\listeners\ExtentManager.class
 com\sqa\doan\tests\BaseTest.class
 com\sqa\doan\tests\CanvasDesignTest.class
+com\sqa\doan\listeners\TestListener.class

@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [ReactFlow UI Automation Suite - FR03 and NFR03]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="com.sqa.doan.listeners.TestListener"/>
+  </listeners>
   <test thread-count="5" name="Canvas Design Tests (FR-03 and NFR-03)(failed)" verbose="0">
     <classes>
       <class name="com.sqa.doan.tests.CanvasDesignTest">
         <methods>
-          <include name="tearDown"/>
-          <include name="tc_fr03_fn_12_graphCircularDependency"/>
+          <include name="tc_fr03_ui_07_testAttributeNameDuplicate"/>
           <include name="tc_fr03_fn_05_renameModelExecution"/>
+          <include name="tc_fr03_fn_12_graphCircularDependency"/>
+          <include name="tc_fr03_fn_11_deleteConnection"/>
+          <include name="tc_fr03_ui_02_modelCardStructure"/>
+          <include name="tc_fr03_fn_06_addAttributeToModel"/>
           <include name="setUp"/>
           <include name="tc_fr03_ui_01_overallUiLayout"/>
+          <include name="tc_fr03_ui_09_testAddTableButton"/>
           <include name="tc_fr03_ui_06_testModelNameSpecialChars"/>
           <include name="loginAndWait"/>
           <include name="tc_fr03_ui_05_testModelNameInputDuplicate"/>
+          <include name="tc_fr03_fn_02_moveModelCoordinates"/>
+          <include name="tc_fr03_fn_04_deleteConnectedModel"/>
           <include name="tc_fr03_fn_03_deleteSingleModel"/>
+          <include name="tearDown"/>
+          <include name="tc_fr03_ui_04_testModelNameInputEmpty"/>
+          <include name="tc_fr03_fn_01_addModelFunction"/>
+          <include name="tc_fr03_ui_03_dataTypeIconDisplay"/>
+          <include name="tc_fr03_fn_10_addConnection"/>
         </methods>
       </class> <!-- com.sqa.doan.tests.CanvasDesignTest -->
     </classes>

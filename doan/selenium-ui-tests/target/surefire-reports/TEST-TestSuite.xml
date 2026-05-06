@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="209.84" tests="24" errors="0" skipped="0" failures="6">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="65.618" tests="24" errors="0" skipped="0" failures="17">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="webdriver.chrome.driver" value="C:\Users\Admin\.cache\selenium\chromedriver\win64\147.0.7727.117\chromedriver.exe"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\test-classes;C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\classes;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-java\4.19.1\selenium-java-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-api\4.19.1\selenium-api-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.19.1\selenium-chrome-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.19.1\selenium-chromium-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-json\4.19.1\selenium-json-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.19.1\selenium-manager-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v121\4.19.1\selenium-devtools-v121-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v122\4.19.1\selenium-devtools-v122-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v123\4.19.1\selenium-devtools-v123-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.19.1\selenium-devtools-v85-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.19.1\selenium-edge-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.19.1\selenium-firefox-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-http\4.19.1\selenium-http-4.19.1.jar;C:\Users\Admin\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.19.1\selenium-ie-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.19.1\selenium-remote-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\Admin\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\Admin\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Admin\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\Admin\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\Admin\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\Admin\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.23.1-alpha\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api\1.36.0\opentelemetry-api-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-context\1.36.0\opentelemetry-context-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.36.0\opentelemetry-exporter-logging-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.36.0\opentelemetry-sdk-common-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.36.0\opentelemetry-sdk-extension-autoconfigure-spi-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.36.0\opentelemetry-sdk-extension-autoconfigure-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.36.0-alpha\opentelemetry-api-events-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.36.0\opentelemetry-sdk-trace-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.36.0-alpha\opentelemetry-extension-incubator-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.36.0\opentelemetry-sdk-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.36.0\opentelemetry-sdk-metrics-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.36.0\opentelemetry-sdk-logs-1.36.0.jar;C:\Users\Admin\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-os\4.19.1\selenium-os-4.19.1.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.19.1\selenium-safari-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-support\4.19.1\selenium-support-4.19.1.jar;C:\Users\Admin\.m2\repository\org\testng\testng\7.9.0\testng-7.9.0.jar;C:\Users\Admin\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Admin\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\Admin\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\Admin\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Admin\.m2\repository\commons-io\commons-io\2.15.0\commons-io-2.15.0.jar;C:\Users\Admin\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\Admin\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Admin\.m2\repository\io\github\bonigarcia\webdrivermanager\5.7.0\webdrivermanager-5.7.0.jar;C:\Users\Admin\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java\3.3.5\docker-java-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-core\3.3.5\docker-java-core-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-api\3.3.5\docker-java-api-3.3.5.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.5\docker-java-transport-httpclient5-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport\3.3.5\docker-java-transport-3.3.5.jar;C:\Users\Admin\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\Admin\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;"/>
+    <property name="java.class.path" value="C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\test-classes;C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\classes;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-java\4.19.1\selenium-java-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-api\4.19.1\selenium-api-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.19.1\selenium-chrome-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.19.1\selenium-chromium-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-json\4.19.1\selenium-json-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.19.1\selenium-manager-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v121\4.19.1\selenium-devtools-v121-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v122\4.19.1\selenium-devtools-v122-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v123\4.19.1\selenium-devtools-v123-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.19.1\selenium-devtools-v85-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.19.1\selenium-edge-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.19.1\selenium-firefox-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-http\4.19.1\selenium-http-4.19.1.jar;C:\Users\Admin\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.19.1\selenium-ie-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.19.1\selenium-remote-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\Admin\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\Admin\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Admin\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\Admin\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\Admin\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\Admin\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.23.1-alpha\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api\1.36.0\opentelemetry-api-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-context\1.36.0\opentelemetry-context-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.36.0\opentelemetry-exporter-logging-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.36.0\opentelemetry-sdk-common-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.36.0\opentelemetry-sdk-extension-autoconfigure-spi-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.36.0\opentelemetry-sdk-extension-autoconfigure-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.36.0-alpha\opentelemetry-api-events-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.36.0\opentelemetry-sdk-trace-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.36.0-alpha\opentelemetry-extension-incubator-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.36.0\opentelemetry-sdk-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.36.0\opentelemetry-sdk-metrics-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.36.0\opentelemetry-sdk-logs-1.36.0.jar;C:\Users\Admin\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-os\4.19.1\selenium-os-4.19.1.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.19.1\selenium-safari-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-support\4.19.1\selenium-support-4.19.1.jar;C:\Users\Admin\.m2\repository\org\testng\testng\7.9.0\testng-7.9.0.jar;C:\Users\Admin\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Admin\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\Admin\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\Admin\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Admin\.m2\repository\commons-io\commons-io\2.15.0\commons-io-2.15.0.jar;C:\Users\Admin\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\Admin\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Admin\.m2\repository\io\github\bonigarcia\webdrivermanager\5.7.0\webdrivermanager-5.7.0.jar;C:\Users\Admin\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java\3.3.5\docker-java-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-core\3.3.5\docker-java-core-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-api\3.3.5\docker-java-api-3.3.5.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.5\docker-java-transport-httpclient5-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport\3.3.5\docker-java-transport-3.3.5.jar;C:\Users\Admin\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\Admin\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;C:\Users\Admin\.m2\repository\com\aventstack\extentreports\5.1.1\extentreports-5.1.1.jar;C:\Users\Admin\.m2\repository\io\reactivex\rxjava3\rxjava\3.1.6\rxjava-3.1.6.jar;C:\Users\Admin\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\Admin\.m2\repository\org\freemarker\freemarker\2.3.32\freemarker-2.3.32.jar;C:\Users\Admin\.m2\repository\org\projectlombok\lombok\1.18.26\lombok-1.18.26.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -16,9 +16,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\Admin\AppData\Local\Temp\surefire4145545216460254643\surefirebooter-20260506161750637_3.jar C:\Users\Admin\AppData\Local\Temp\surefire4145545216460254643 2026-05-06T16-17-50_538-jvmRun1 surefire-20260506161750637_1tmp surefire_0-20260506161750637_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Admin\AppData\Local\Temp\surefire6783270970271636434\surefirebooter-20260506213630894_3.jar C:\Users\Admin\AppData\Local\Temp\surefire6783270970271636434 2026-05-06T21-36-30_722-jvmRun1 surefire-20260506213630894_1tmp surefire_0-20260506213630894_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\test-classes;C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\classes;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-java\4.19.1\selenium-java-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-api\4.19.1\selenium-api-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.19.1\selenium-chrome-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.19.1\selenium-chromium-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-json\4.19.1\selenium-json-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.19.1\selenium-manager-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v121\4.19.1\selenium-devtools-v121-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v122\4.19.1\selenium-devtools-v122-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v123\4.19.1\selenium-devtools-v123-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.19.1\selenium-devtools-v85-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.19.1\selenium-edge-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.19.1\selenium-firefox-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-http\4.19.1\selenium-http-4.19.1.jar;C:\Users\Admin\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.19.1\selenium-ie-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.19.1\selenium-remote-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\Admin\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\Admin\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Admin\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\Admin\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\Admin\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\Admin\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.23.1-alpha\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api\1.36.0\opentelemetry-api-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-context\1.36.0\opentelemetry-context-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.36.0\opentelemetry-exporter-logging-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.36.0\opentelemetry-sdk-common-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.36.0\opentelemetry-sdk-extension-autoconfigure-spi-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.36.0\opentelemetry-sdk-extension-autoconfigure-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.36.0-alpha\opentelemetry-api-events-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.36.0\opentelemetry-sdk-trace-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.36.0-alpha\opentelemetry-extension-incubator-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.36.0\opentelemetry-sdk-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.36.0\opentelemetry-sdk-metrics-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.36.0\opentelemetry-sdk-logs-1.36.0.jar;C:\Users\Admin\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-os\4.19.1\selenium-os-4.19.1.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.19.1\selenium-safari-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-support\4.19.1\selenium-support-4.19.1.jar;C:\Users\Admin\.m2\repository\org\testng\testng\7.9.0\testng-7.9.0.jar;C:\Users\Admin\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Admin\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\Admin\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\Admin\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Admin\.m2\repository\commons-io\commons-io\2.15.0\commons-io-2.15.0.jar;C:\Users\Admin\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\Admin\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Admin\.m2\repository\io\github\bonigarcia\webdrivermanager\5.7.0\webdrivermanager-5.7.0.jar;C:\Users\Admin\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java\3.3.5\docker-java-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-core\3.3.5\docker-java-core-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-api\3.3.5\docker-java-api-3.3.5.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.5\docker-java-transport-httpclient5-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport\3.3.5\docker-java-transport-3.3.5.jar;C:\Users\Admin\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\Admin\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\test-classes;C:\Users\Admin\_CODE_\Test_SQA_DATN\doan\selenium-ui-tests\target\classes;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-java\4.19.1\selenium-java-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-api\4.19.1\selenium-api-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.19.1\selenium-chrome-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.19.1\selenium-chromium-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-json\4.19.1\selenium-json-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.19.1\selenium-manager-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v121\4.19.1\selenium-devtools-v121-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v122\4.19.1\selenium-devtools-v122-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v123\4.19.1\selenium-devtools-v123-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.19.1\selenium-devtools-v85-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.19.1\selenium-edge-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.19.1\selenium-firefox-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-http\4.19.1\selenium-http-4.19.1.jar;C:\Users\Admin\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.19.1\selenium-ie-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.19.1\selenium-remote-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\com\google\guava\guava\33.1.0-jre\guava-33.1.0-jre.jar;C:\Users\Admin\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\Admin\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Admin\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\Admin\.m2\repository\org\checkerframework\checker-qual\3.42.0\checker-qual-3.42.0.jar;C:\Users\Admin\.m2\repository\com\google\errorprone\error_prone_annotations\2.26.1\error_prone_annotations-2.26.1.jar;C:\Users\Admin\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.23.1-alpha\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api\1.36.0\opentelemetry-api-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-context\1.36.0\opentelemetry-context-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.36.0\opentelemetry-exporter-logging-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.36.0\opentelemetry-sdk-common-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.36.0\opentelemetry-sdk-extension-autoconfigure-spi-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.36.0\opentelemetry-sdk-extension-autoconfigure-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.36.0-alpha\opentelemetry-api-events-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.36.0\opentelemetry-sdk-trace-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.36.0-alpha\opentelemetry-extension-incubator-1.36.0-alpha.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.36.0\opentelemetry-sdk-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.36.0\opentelemetry-sdk-metrics-1.36.0.jar;C:\Users\Admin\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.36.0\opentelemetry-sdk-logs-1.36.0.jar;C:\Users\Admin\.m2\repository\net\bytebuddy\byte-buddy\1.14.12\byte-buddy-1.14.12.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-os\4.19.1\selenium-os-4.19.1.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.19.1\selenium-safari-driver-4.19.1.jar;C:\Users\Admin\.m2\repository\org\seleniumhq\selenium\selenium-support\4.19.1\selenium-support-4.19.1.jar;C:\Users\Admin\.m2\repository\org\testng\testng\7.9.0\testng-7.9.0.jar;C:\Users\Admin\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\Admin\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\Admin\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\Admin\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\Admin\.m2\repository\commons-io\commons-io\2.15.0\commons-io-2.15.0.jar;C:\Users\Admin\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\Admin\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\Admin\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\Admin\.m2\repository\io\github\bonigarcia\webdrivermanager\5.7.0\webdrivermanager-5.7.0.jar;C:\Users\Admin\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java\3.3.5\docker-java-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-core\3.3.5\docker-java-core-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-api\3.3.5\docker-java-api-3.3.5.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.10.3\jackson-annotations-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.10.3\jackson-databind-2.10.3.jar;C:\Users\Admin\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.10.3\jackson-core-2.10.3.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\Admin\.m2\repository\org\slf4j\jcl-over-slf4j\1.7.30\jcl-over-slf4j-1.7.30.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.5\docker-java-transport-httpclient5-3.3.5.jar;C:\Users\Admin\.m2\repository\com\github\docker-java\docker-java-transport\3.3.5\docker-java-transport-3.3.5.jar;C:\Users\Admin\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\Admin\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\Admin\.m2\repository\org\apache\commons\commons-lang3\3.14.0\commons-lang3-3.14.0.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2\httpcore5-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2\httpcore5-h2-5.2.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-core\2.23.1\log4j-core-2.23.1.jar;C:\Users\Admin\.m2\repository\org\apache\logging\log4j\log4j-api\2.23.1\log4j-api-2.23.1.jar;C:\Users\Admin\.m2\repository\com\aventstack\extentreports\5.1.1\extentreports-5.1.1.jar;C:\Users\Admin\.m2\repository\io\reactivex\rxjava3\rxjava\3.1.6\rxjava-3.1.6.jar;C:\Users\Admin\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\Admin\.m2\repository\org\freemarker\freemarker\2.3.32\freemarker-2.3.32.jar;C:\Users\Admin\.m2\repository\org\projectlombok\lombok\1.18.26\lombok-1.18.26.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Admin"/>
     <property name="user.language" value="en"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Admin\AppData\Local\Temp\surefire4145545216460254643\surefirebooter-20260506161750637_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Admin\AppData\Local\Temp\surefire6783270970271636434\surefirebooter-20260506213630894_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.8+12-LTS-250"/>
@@ -59,12 +59,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="tc_fr03_ui_01_overallUiLayout" classname="com.sqa.doan.tests.CanvasDesignTest" time="10.077">
-    <failure message="Zoom/pan controls are not present expected [true] but found [false]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Zoom/pan controls are not present expected [true] but found [false]
+  <testcase name="tc_fr03_ui_01_overallUiLayout" classname="com.sqa.doan.tests.CanvasDesignTest" time="2.898">
+    <failure message="Canvas area is not visible expected [true] but found [false]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Canvas area is not visible expected [true] but found [false]
 	at org.testng.Assert.fail(Assert.java:111)
 	at org.testng.Assert.failNotEquals(Assert.java:1578)
 	at org.testng.Assert.assertTrue(Assert.java:57)
-	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_01_overallUiLayout(CanvasDesignTest.java:31)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_01_overallUiLayout(CanvasDesignTest.java:30)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -96,45 +96,53 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
-    <system-out><![CDATA[=========================================================
+    <system-out><![CDATA[Test Suite started!
+=========================================================
 >>> DANG CHO 1 PHUT...
 >>> Vui long: 1) Dang nhap Google  2) Click vao 1 so do de vao Canvas
 =========================================================
 >>> Bat dau chay 22 test cases...
+Started test: tc_fr03_ui_01_overallUiLayout
+Failed test: tc_fr03_ui_01_overallUiLayout
 ]]></system-out>
     <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-May 06, 2026 4:17:52 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+May 06, 2026 9:36:32 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 147
-May 06, 2026 4:17:52 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+May 06, 2026 9:36:32 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
 WARNING: Unable to find version of CDP to use for 147.0.7727.138. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.19.1` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
   </testcase>
-  <testcase name="tc_fr03_ui_02_modelCardStructure" classname="com.sqa.doan.tests.CanvasDesignTest" time="11.617">
-    <system-out><![CDATA[TC_FR03_UI_02 - PASS: Model card structure displayed clearly.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_ui_03_dataTypeIconDisplay" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.556">
-    <system-out><![CDATA[TC_FR03_UI_03 - PASS: Distinct and recognizable icons/colors are shown for different SQL data types.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_ui_04_testModelNameInputEmpty" classname="com.sqa.doan.tests.CanvasDesignTest" time="10.922">
-    <system-out><![CDATA[TC_FR03_UI_04 - PASS: UI blocks save action and shows warning: 
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_ui_05_testModelNameInputDuplicate" classname="com.sqa.doan.tests.CanvasDesignTest" time="17.162">
-    <failure message="Expected condition failed: waiting for visibility of element located by By.cssSelector: .react-flow__node-model input (tried for 15 second(s) with 500 milliseconds interval)&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63226}, goog:processID: 23004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63226/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 42e36ea2aad946c4fd64054be90f82ee" type="org.openqa.selenium.TimeoutException"><![CDATA[org.openqa.selenium.TimeoutException: 
-Expected condition failed: waiting for visibility of element located by By.cssSelector: .react-flow__node-model input (tried for 15 second(s) with 500 milliseconds interval)
+  <testcase name="tc_fr03_ui_02_modelCardStructure" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.074">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label=&apos;Add Table&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
 Build info: version: '4.19.1', revision: 'abe0ee07dc'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63226}, goog:processID: 23004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63226/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 42e36ea2aad946c4fd64054be90f82ee
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.sqa.doan.pages.CanvasPage.renameFirstTable(CanvasPage.java:95)
-	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_05_testModelNameInputDuplicate(CanvasDesignTest.java:72)
+Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label='Add Table']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.BasePage.jsClick(BasePage.java:64)
+	at com.sqa.doan.pages.CanvasPage.clickAddTable(CanvasPage.java:47)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_02_modelCardStructure(CanvasDesignTest.java:38)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -166,18 +174,227 @@ Session ID: 42e36ea2aad946c4fd64054be90f82ee
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_ui_02_modelCardStructure
+Failed test: tc_fr03_ui_02_modelCardStructure
+]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_ui_06_testModelNameSpecialChars" classname="com.sqa.doan.tests.CanvasDesignTest" time="15.35">
-    <failure message="Expected condition failed: waiting for visibility of element located by By.cssSelector: .react-flow__node-model input (tried for 15 second(s) with 500 milliseconds interval)&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63226}, goog:processID: 23004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63226/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 42e36ea2aad946c4fd64054be90f82ee" type="org.openqa.selenium.TimeoutException"><![CDATA[org.openqa.selenium.TimeoutException: 
-Expected condition failed: waiting for visibility of element located by By.cssSelector: .react-flow__node-model input (tried for 15 second(s) with 500 milliseconds interval)
+  <testcase name="tc_fr03_ui_03_dataTypeIconDisplay" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.007">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[aria-label=&apos;Add attribute&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
 Build info: version: '4.19.1', revision: 'abe0ee07dc'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63226}, goog:processID: 23004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63226/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 42e36ea2aad946c4fd64054be90f82ee
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.sqa.doan.pages.CanvasPage.renameAndBlur(CanvasPage.java:113)
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[aria-label='Add attribute']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:318)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:315)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.CanvasPage.clickAddAttributeOnFirstNode(CanvasPage.java:126)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_03_dataTypeIconDisplay(CanvasDesignTest.java:48)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_ui_03_dataTypeIconDisplay
+Failed test: tc_fr03_ui_03_dataTypeIconDisplay
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_ui_04_testModelNameInputEmpty" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.006">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[title=&apos;Double click to edit&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[title='Double click to edit']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:318)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:315)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.CanvasPage.renameAndBlur(CanvasPage.java:111)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_04_testModelNameInputEmpty(CanvasDesignTest.java:57)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_ui_04_testModelNameInputEmpty
+Failed test: tc_fr03_ui_04_testModelNameInputEmpty
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_ui_05_testModelNameInputDuplicate" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.005">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label=&apos;Add Table&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label='Add Table']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.BasePage.jsClick(BasePage.java:64)
+	at com.sqa.doan.pages.CanvasPage.clickAddTable(CanvasPage.java:47)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_05_testModelNameInputDuplicate(CanvasDesignTest.java:67)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_ui_05_testModelNameInputDuplicate
+Failed test: tc_fr03_ui_05_testModelNameInputDuplicate
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_ui_06_testModelNameSpecialChars" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.005">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[title=&apos;Double click to edit&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[title='Double click to edit']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:318)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:315)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.CanvasPage.renameAndBlur(CanvasPage.java:111)
 	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_06_testModelNameSpecialChars(CanvasDesignTest.java:80)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
@@ -210,85 +427,38 @@ Session ID: 42e36ea2aad946c4fd64054be90f82ee
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
-  </testcase>
-  <testcase name="tc_fr03_ui_07_testAttributeNameDuplicate" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.041">
-    <system-out><![CDATA[TC_FR03_UI_07 - PASS: UI blocks the input showing a concise 'Column name must be unique' message.
+    <system-out><![CDATA[Started test: tc_fr03_ui_06_testModelNameSpecialChars
+Failed test: tc_fr03_ui_06_testModelNameSpecialChars
 ]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_ui_08_testAttributeDataTypeEnum" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.001">
-    <system-out><![CDATA[TC_FR03_UI_08 - PASS: UI highlights the field asking for required ENUM values in red.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_ui_09_testAddTableButton" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.022">
-    <system-out><![CDATA[TC_FR03_UI_09 - PASS: Button is always enabled. Triggers smoothly with visual ripple effect.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_ui_10_testExportJsonButton" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.0">
-    <system-out><![CDATA[TC_FR03_UI_10 - PASS: Cursor changes to pointer. Tooltip indicates exact format to be exported.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_fn_01_addModelFunction" classname="com.sqa.doan.tests.CanvasDesignTest" time="1.557">
-    <system-out><![CDATA[TC_FR03_FN_01 - PASS: A new model component is successfully instantiated in the React Flow store and rendered.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_fn_02_moveModelCoordinates" classname="com.sqa.doan.tests.CanvasDesignTest" time="1.217">
-    <system-out><![CDATA[TC_FR03_FN_02 - PASS: Node position updates accurately in the state. Connections reroute dynamically.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_fn_03_deleteSingleModel" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.615">
-    <failure message="Node was not deleted expected [true] but found [false]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Node was not deleted expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:111)
-	at org.testng.Assert.failNotEquals(Assert.java:1578)
-	at org.testng.Assert.assertTrue(Assert.java:57)
-	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_03_deleteSingleModel(CanvasDesignTest.java:137)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:819)
-	at org.testng.TestRunner.run(TestRunner.java:619)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
-	at org.testng.TestNG.runSuites(TestNG.java:1134)
-	at org.testng.TestNG.run(TestNG.java:1101)
-	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
-	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
-	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></failure>
-  </testcase>
-  <testcase name="tc_fr03_fn_04_deleteConnectedModel" classname="com.sqa.doan.tests.CanvasDesignTest" time="1.361">
-    <system-out><![CDATA[TC_FR03_FN_04 - PASS: Cascade deletion works: Model + all connected Edges are swept from memory.
-]]></system-out>
-  </testcase>
-  <testcase name="tc_fr03_fn_05_renameModelExecution" classname="com.sqa.doan.tests.CanvasDesignTest" time="15.583">
-    <failure message="Expected condition failed: waiting for visibility of element located by By.cssSelector: .react-flow__node-model input (tried for 15 second(s) with 500 milliseconds interval)&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63226}, goog:processID: 23004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63226/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 42e36ea2aad946c4fd64054be90f82ee" type="org.openqa.selenium.TimeoutException"><![CDATA[org.openqa.selenium.TimeoutException: 
-Expected condition failed: waiting for visibility of element located by By.cssSelector: .react-flow__node-model input (tried for 15 second(s) with 500 milliseconds interval)
+  <testcase name="tc_fr03_ui_07_testAttributeNameDuplicate" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.005">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[aria-label=&apos;Add attribute&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
 Build info: version: '4.19.1', revision: 'abe0ee07dc'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63226}, goog:processID: 23004, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63226/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 42e36ea2aad946c4fd64054be90f82ee
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-	at com.sqa.doan.pages.CanvasPage.renameFirstTable(CanvasPage.java:95)
-	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_05_renameModelExecution(CanvasDesignTest.java:161)
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[aria-label='Add attribute']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:318)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:315)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.CanvasPage.clickAddAttributeOnFirstNode(CanvasPage.java:126)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_07_testAttributeNameDuplicate(CanvasDesignTest.java:86)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -320,32 +490,563 @@ Session ID: 42e36ea2aad946c4fd64054be90f82ee
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_ui_07_testAttributeNameDuplicate
+Failed test: tc_fr03_ui_07_testAttributeNameDuplicate
+]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_fn_06_addAttributeToModel" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.046">
-    <system-out><![CDATA[TC_FR03_FN_06 - PASS: A new row is pushed to the node's attributes array.
+  <testcase name="tc_fr03_ui_08_testAttributeDataTypeEnum" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.001">
+    <system-out><![CDATA[Started test: tc_fr03_ui_08_testAttributeDataTypeEnum
+TC_FR03_UI_08 - PASS: UI highlights the field asking for required ENUM values in red.
+Passed test: tc_fr03_ui_08_testAttributeDataTypeEnum
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_ui_09_testAddTableButton" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.004">
+    <failure message="Add Table button is not visible expected [true] but found [false]" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Add Table button is not visible expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_ui_09_testAddTableButton(CanvasDesignTest.java:99)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_ui_09_testAddTableButton
+Failed test: tc_fr03_ui_09_testAddTableButton
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_ui_10_testExportJsonButton" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.0">
+    <system-out><![CDATA[Started test: tc_fr03_ui_10_testExportJsonButton
+TC_FR03_UI_10 - PASS: Cursor changes to pointer. Tooltip indicates exact format to be exported.
+Passed test: tc_fr03_ui_10_testExportJsonButton
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_01_addModelFunction" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.008">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label=&apos;Add Table&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label='Add Table']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.BasePage.jsClick(BasePage.java:64)
+	at com.sqa.doan.pages.CanvasPage.clickAddTable(CanvasPage.java:47)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_01_addModelFunction(CanvasDesignTest.java:115)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_01_addModelFunction
+Failed test: tc_fr03_fn_01_addModelFunction
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_02_moveModelCoordinates" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.004">
+    <failure message="Could not drag node" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Could not drag node
+	at org.testng.Assert.fail(Assert.java:111)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_02_moveModelCoordinates(CanvasDesignTest.java:128)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_02_moveModelCoordinates
+Failed test: tc_fr03_fn_02_moveModelCoordinates
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_03_deleteSingleModel" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.006">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=.react-flow__node-model}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=.react-flow__node-model}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:318)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:315)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.CanvasPage.deleteFirstTable(CanvasPage.java:132)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_03_deleteSingleModel(CanvasDesignTest.java:135)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_03_deleteSingleModel
+Failed test: tc_fr03_fn_03_deleteSingleModel
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_04_deleteConnectedModel" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.006">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label=&apos;Add Table&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label='Add Table']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.BasePage.jsClick(BasePage.java:64)
+	at com.sqa.doan.pages.CanvasPage.clickAddTable(CanvasPage.java:47)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_04_deleteConnectedModel(CanvasDesignTest.java:145)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_04_deleteConnectedModel
+Failed test: tc_fr03_fn_04_deleteConnectedModel
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_05_renameModelExecution" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.007">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label=&apos;Add Table&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label='Add Table']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.BasePage.jsClick(BasePage.java:64)
+	at com.sqa.doan.pages.CanvasPage.clickAddTable(CanvasPage.java:47)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_05_renameModelExecution(CanvasDesignTest.java:158)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_05_renameModelExecution
+Failed test: tc_fr03_fn_05_renameModelExecution
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_06_addAttributeToModel" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.003">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[aria-label=&apos;Add attribute&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=[aria-label='Add attribute']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:318)
+	at org.openqa.selenium.support.ui.ExpectedConditions$11.apply(ExpectedConditions.java:315)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.CanvasPage.clickAddAttributeOnFirstNode(CanvasPage.java:126)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_06_addAttributeToModel(CanvasDesignTest.java:170)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_06_addAttributeToModel
+Failed test: tc_fr03_fn_06_addAttributeToModel
 ]]></system-out>
   </testcase>
   <testcase name="tc_fr03_fn_07_deleteAttribute" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.001">
-    <system-out><![CDATA[TC_FR03_FN_07 - PASS: The exact attribute is spliced from the array.
+    <system-out><![CDATA[Started test: tc_fr03_fn_07_deleteAttribute
+TC_FR03_FN_07 - PASS: The exact attribute is spliced from the array.
+Passed test: tc_fr03_fn_07_deleteAttribute
 ]]></system-out>
   </testcase>
   <testcase name="tc_fr03_fn_08_togglePrimaryKeyStatus" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.001">
-    <system-out><![CDATA[TC_FR03_FN_08 - PASS: The boolean isPrimaryKey flips and triggers a re-render.
+    <system-out><![CDATA[Started test: tc_fr03_fn_08_togglePrimaryKeyStatus
+TC_FR03_FN_08 - PASS: The boolean isPrimaryKey flips and triggers a re-render.
+Passed test: tc_fr03_fn_08_togglePrimaryKeyStatus
 ]]></system-out>
   </testcase>
   <testcase name="tc_fr03_fn_09_changeDataTypeLogic" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.001">
-    <system-out><![CDATA[TC_FR03_FN_09 - PASS: The type property is updated to string 'INT'.
+    <system-out><![CDATA[Started test: tc_fr03_fn_09_changeDataTypeLogic
+TC_FR03_FN_09 - PASS: The type property is updated to string 'INT'.
+Passed test: tc_fr03_fn_09_changeDataTypeLogic
 ]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_fn_10_addConnection" classname="com.sqa.doan.tests.CanvasDesignTest" time="20.837">
-    <system-out><![CDATA[TC_FR03_FN_10 - PASS: Edge is pushed to React Flow. sourceHandle and targetHandle reference correct IDs.
+  <testcase name="tc_fr03_fn_10_addConnection" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.005">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label=&apos;Add Table&apos;]}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElement {using=css selector, value=[aria-label='Add Table']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	at com.sqa.doan.pages.BasePage.jsClick(BasePage.java:64)
+	at com.sqa.doan.pages.CanvasPage.clickAddTable(CanvasPage.java:47)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_10_addConnection(CanvasDesignTest.java:194)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_10_addConnection
+Failed test: tc_fr03_fn_10_addConnection
 ]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_fn_11_deleteConnection" classname="com.sqa.doan.tests.CanvasDesignTest" time="10.04">
-    <system-out><![CDATA[TC_FR03_FN_11 - PASS: The edge object is filtered out of the connection array.
+  <testcase name="tc_fr03_fn_11_deleteConnection" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.003">
+    <failure message="invalid session id&#10;Build info: version: &apos;4.19.1&apos;, revision: &apos;abe0ee07dc&apos;&#10;System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.8&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=.react-flow__edge-path}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 8c49633a611b46d31d8500e762743c93" type="org.openqa.selenium.NoSuchSessionException"><![CDATA[org.openqa.selenium.NoSuchSessionException: 
+invalid session id
+Build info: version: '4.19.1', revision: 'abe0ee07dc'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.8'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8c49633a611b46d31d8500e762743c93, findElements {using=css selector, value=.react-flow__edge-path}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 147.0.7727.138, chrome: {chromedriverVersion: 147.0.7727.117 (474cc805edd..., userDataDir: C:\Users\Admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63895}, goog:processID: 18716, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63895/devtoo..., se:cdpVersion: 147.0.7727.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8c49633a611b46d31d8500e762743c93
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElements(ElementLocation.java:182)
+	at org.openqa.selenium.remote.ElementLocation.findElements(ElementLocation.java:103)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:362)
+	at com.sqa.doan.pages.CanvasPage.getEdgeCount(CanvasPage.java:174)
+	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_11_deleteConnection(CanvasDesignTest.java:206)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:228)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:961)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:201)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:819)
+	at org.testng.TestRunner.run(TestRunner.java:619)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:443)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:397)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:336)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1228)
+	at org.testng.TestNG.runSuites(TestNG.java:1134)
+	at org.testng.TestNG.run(TestNG.java:1101)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+]]></failure>
+    <system-out><![CDATA[Started test: tc_fr03_fn_11_deleteConnection
+Failed test: tc_fr03_fn_11_deleteConnection
 ]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_fn_12_graphCircularDependency" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.0">
+  <testcase name="tc_fr03_fn_12_graphCircularDependency" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.001">
     <failure message="Algorithm fails to detect cycle, allowing circular connection which causes infinite loops later." type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Algorithm fails to detect cycle, allowing circular connection which causes infinite loops later.
 	at org.testng.Assert.fail(Assert.java:111)
 	at com.sqa.doan.tests.CanvasDesignTest.tc_fr03_fn_12_graphCircularDependency(CanvasDesignTest.java:215)
@@ -380,13 +1081,20 @@ Session ID: 42e36ea2aad946c4fd64054be90f82ee
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></failure>
-  </testcase>
-  <testcase name="tc_fr03_fn_13_exportJsonFileGeneration" classname="com.sqa.doan.tests.CanvasDesignTest" time="20.573">
-    <system-out><![CDATA[Export JSON failed
+    <system-out><![CDATA[Started test: tc_fr03_fn_12_graphCircularDependency
+Failed test: tc_fr03_fn_12_graphCircularDependency
 ]]></system-out>
   </testcase>
-  <testcase name="tc_fr03_fn_14_exportPngCanvasCapture" classname="com.sqa.doan.tests.CanvasDesignTest" time="10.032">
-    <system-out><![CDATA[TC_FR03_FN_14 - PASS: html-to-image renders exactly what is inside the viewport with transparent background.
+  <testcase name="tc_fr03_fn_13_exportJsonFileGeneration" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.005">
+    <system-out><![CDATA[Started test: tc_fr03_fn_13_exportJsonFileGeneration
+Export JSON failed
+Passed test: tc_fr03_fn_13_exportJsonFileGeneration
+]]></system-out>
+  </testcase>
+  <testcase name="tc_fr03_fn_14_exportPngCanvasCapture" classname="com.sqa.doan.tests.CanvasDesignTest" time="0.003">
+    <system-out><![CDATA[Started test: tc_fr03_fn_14_exportPngCanvasCapture
+Export PNG failed
+Passed test: tc_fr03_fn_14_exportPngCanvasCapture
 ]]></system-out>
   </testcase>
 </testsuite>

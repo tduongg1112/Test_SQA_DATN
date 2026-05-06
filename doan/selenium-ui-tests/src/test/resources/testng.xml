@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="ReactFlow UI Automation Suite - FR03 and NFR03" verbose="1" preserve-order="true">
+    <listeners>
+        <listener class-name="com.sqa.doan.listeners.TestListener"/>
+    </listeners>
     <test name="Canvas Design Tests (FR-03 and NFR-03)">
         <classes>
             <class name="com.sqa.doan.tests.CanvasDesignTest"/>
