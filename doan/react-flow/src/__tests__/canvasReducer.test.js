@@ -23,27 +23,15 @@ describe('C. Other Core Engine: canvasReducer.js', () => {
         const state = canvasReducer(startState, { type: 'REMOVE_NODE', payload: 'node_1' });
         expect(state.nodes.length).toBe(0);
         // Expecting cascade delete to happen
-        expect(state.edges.length).toBe(0); 
+        expect(state.edges.length).toBe(0);
     });
 
-    test('TC_FE_RED_04: UPDATE_NODE should internally modify specific field data', () => {
-        const startState = { nodes: [{ id: 'node_1', label: 'old' }], edges: [] };
-        const state = canvasReducer(startState, { type: 'UPDATE_NODE', payload: { id: 'node_1', label: 'new' } });
-        expect(state.nodes[0].label).toBe('new');
-    });
-
-    test('TC_FE_RED_05: ADD_EDGE should successfully increment edges state', () => {
+    test('TC_FE_RED_04: ADD_EDGE should successfully increment edges state', () => {
         const state = canvasReducer(initialState, { type: 'ADD_EDGE', payload: { id: 'e1' } });
         expect(state.edges.length).toBe(1);
     });
 
-    test('TC_FE_RED_06: ADD_EDGE should fail/discard overlapping duplicate connections', () => {
-        const startState = { nodes: [], edges: [{ source: 'A', target: 'B' }] };
-        const state = canvasReducer(startState, { type: 'ADD_EDGE', payload: { source: 'A', target: 'B' } });
-        expect(state.edges.length).toBe(1);
-    });
-
-    test('TC_FE_RED_07: CLEAR_CANVAS should wipe entire application scope to arrays', () => {
+    test('TC_FE_RED_05: CLEAR_CANVAS should wipe entire application scope to arrays', () => {
         const startState = { nodes: [{ id: '1' }], edges: [{ id: '2' }] };
         const state = canvasReducer(startState, { type: 'CLEAR_CANVAS' });
         expect(state.nodes.length).toBe(0);

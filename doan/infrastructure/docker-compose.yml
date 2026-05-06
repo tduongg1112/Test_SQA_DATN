@@ -54,10 +54,15 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-diagram:3306/schema_account?createDatabaseIfNotExist=true&serverTimezone=Asia/Ho_Chi_Minh
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=1111
+      - GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID_HERE
+      - GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_CLIENT_SECRET_HERE
     depends_on:
-      - eureka-server
-      - mysql-diagram
-      - redis
+      eureka-server:
+        condition: service_started
+      mysql-diagram:
+        condition: service_healthy
+      redis:
+        condition: service_started
     networks:
       - diagram-network
 
@@ -74,8 +79,10 @@ services:
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=1111
     depends_on:
-      - eureka-server
-      - mysql-diagram
+      eureka-server:
+        condition: service_started
+      mysql-diagram:
+        condition: service_healthy
     networks:
       - diagram-network
 
@@ -89,6 +96,12 @@ services:
       MYSQL_DATABASE: schema_visualizer
     volumes:
       - mysql_diagram_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1111"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
     networks:
       - diagram-network
 

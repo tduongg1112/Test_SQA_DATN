@@ -3,15 +3,29 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     environment: "node",
-    include: ["src/**/*.test.ts"],
+    globals: true,
+    include: ["src/**/*.test.ts", "src/**/*.test.js"],
+    reporters: ["verbose"],
     coverage: {
       provider: "v8",
-      reporter: ["text", "html"],
+      reportOnFailure: true,
+      reporter: ["text", "text-summary", "html", "lcov"],
+      reportsDirectory: "./coverage",
+      all: true,
       include: [
-        "src/services/chatbotService.ts",
-        "src/api/statisticsApi.ts",
+        "src/utils/schemaValidator.js",
+        "src/utils/diagramUtils.js",
+        "src/utils/sqlGenerator.js",
+        "src/utils/canvasReducer.js",
+        "src/utils/llmParser.js",
       ],
-      exclude: ["src/**/*.test.ts"],
+      exclude: ["src/**/*.test.ts", "src/**/*.test.js"],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 80,
+        statements: 80,
+      },
     },
   },
 });

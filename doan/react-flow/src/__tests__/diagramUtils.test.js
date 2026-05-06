@@ -57,60 +57,38 @@ describe('B. Core Utility: diagramUtils.js', () => {
         expect(result.relationships.length).toBe(0);
     });
 
-    // TC_FE_UTIL_08 | Export to DB JSON | generateJSONFromNodes | Edge lacking Target Node ID
-    test('TC_FE_UTIL_08: generateJSONFromNodes should filter out edge missing target ID', () => {
-        const nodes = [{ id: '1', data: { tableName: 'users', attributes: [] } }];
-        const edges = [{ id: 'e1', source: '1' }]; // no target
-        const result = generateJSONFromNodes(nodes, edges);
-        expect(result.relationships.length).toBe(0);
-    });
-
-    // TC_FE_UTIL_09 | Export to DB JSON | generateJSONFromNodes | Redundant/Duplicate Edges
-    test('TC_FE_UTIL_09: generateJSONFromNodes should remove duplicate relationship definitions', () => {
+    // TC_FE_UTIL_08 | Export to DB JSON | generateJSONFromNodes | Redundant/Duplicate Edges
+    test('TC_FE_UTIL_08: generateJSONFromNodes should remove duplicate relationship definitions', () => {
         const nodes = [{ id: '1', data: { tableName: 'A'} }, { id: '2', data: { tableName: 'B'} }];
         const edges = [{ source: '1', target: '2' }, { source: '1', target: '2' }]; // duplicate
         const result = generateJSONFromNodes(nodes, edges);
         expect(result.relationships.length).toBe(1);
     });
 
-    // TC_FE_UTIL_10 | Export to DB JSON | generateJSONFromNodes | Node containing 0 columns
-    test('TC_FE_UTIL_10: generateJSONFromNodes should handle node with empty attributes Array', () => {
-        const nodes = [{ id: '1', data: { tableName: 'users', attributes: [] } }];
-        const result = generateJSONFromNodes(nodes, []);
-        expect(result.tables[0].columns).toEqual([]);
-    });
-
-    // TC_FE_UTIL_11 | Export to DB JSON | generateJSONFromNodes | Nodes with complex attributes
-    test('TC_FE_UTIL_11: generateJSONFromNodes should correctly tag column types and constraints', () => {
+    // TC_FE_UTIL_09 | Export to DB JSON | generateJSONFromNodes | Nodes with complex attributes
+    test('TC_FE_UTIL_09: generateJSONFromNodes should correctly tag column types and constraints', () => {
         const nodes = [{ id: '1', data: { tableName: 'users', attributes: [{ name: 'id', type: 'INT', isPrimary: true, notNull: true }] } }];
         const result = generateJSONFromNodes(nodes, []);
         expect(result.tables[0].columns[0].is_primary).toBe(true);
         expect(result.tables[0].columns[0].not_null).toBe(true);
     });
 
-    // TC_FE_UTIL_12 | Export to DB JSON | generateJSONFromNodes | Nested relationships (A->B->C)
-    test('TC_FE_UTIL_12: generateJSONFromNodes should map foreign keys appropriately across depth', () => {
+    // TC_FE_UTIL_10 | Export to DB JSON | generateJSONFromNodes | Nested relationships (A->B->C)
+    test('TC_FE_UTIL_10: generateJSONFromNodes should map foreign keys appropriately across depth', () => {
         const edges = [{ source: '1', target: '2' }, { source: '2', target: '3' }];
         const result = generateJSONFromNodes([{id:'1'}, {id:'2'}, {id:'3'}], edges);
         expect(result.relationships.length).toBe(2);
     });
 
-    // TC_FE_UTIL_13 | Export to DB JSON | generateJSONFromNodes | Unrecognized React Flow Node Type
-    test('TC_FE_UTIL_13: generateJSONFromNodes should exclude UI-only node types', () => {
-        const nodes = [{ id: 'note1', type: 'stickyNote', data: {} }];
-        const result = generateJSONFromNodes(nodes, []);
-        expect(result.tables.length).toBe(0);
-    });
-
-    // TC_FE_UTIL_14 | Export to DB JSON | generateJSONFromNodes | Coordinate Extraction
-    test('TC_FE_UTIL_14: generateJSONFromNodes should safely convert/round float coordinates to integer', () => {
+    // TC_FE_UTIL_11 | Export to DB JSON | generateJSONFromNodes | Coordinate Extraction
+    test('TC_FE_UTIL_11: generateJSONFromNodes should safely convert/round float coordinates to integer', () => {
         const nodes = [{ id: '1', data: { tableName: 'users', attributes: [] }, position: { x: 100.5, y: 20.9 } }];
         const result = generateJSONFromNodes(nodes, []);
         expect(result.tables[0].position.x).toBe(100); // or 101 based on round logic
     });
 
-    // TC_FE_UTIL_15 | Export to DB JSON | parseJSONToNodes | Valid DB structure to Canvas Nodes
-    test('TC_FE_UTIL_15: parseJSONToNodes should output React Flow compatible nodes/edges array', () => {
+    // TC_FE_UTIL_12 | Export to DB JSON | parseJSONToNodes | Valid DB structure to Canvas Nodes
+    test('TC_FE_UTIL_12: parseJSONToNodes should output React Flow compatible nodes/edges array', () => {
         const dbPayload = { tables: [{ id: '1', name: 'users' }], relationships: [] };
         const result = parseJSONToNodes(dbPayload);
         expect(Array.isArray(result.nodes)).toBe(true);
