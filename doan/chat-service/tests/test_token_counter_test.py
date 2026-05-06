@@ -11,6 +11,8 @@ import pytest
 
 def test_count_tokens_with_valid_tokenizer_returns_token_count(mocker):
     # Test Case ID: UT_CS_TKN_001
+    # Test Case Name: test_count_tokens_with_valid_tokenizer_returns_token_count
+    # Purpose: Verify token counting with a valid tokenizer object.
     # Arrange: replace tokenizer with a mock that returns five tokens.
     token_counter_module = importlib.import_module("token_counter")
     fake_tokenizer = mocker.Mock()
@@ -27,6 +29,8 @@ def test_count_tokens_with_valid_tokenizer_returns_token_count(mocker):
 
 def test_count_tokens_when_text_empty_returns_zero():
     # Test Case ID: UT_CS_TKN_002
+    # Test Case Name: test_count_tokens_when_text_empty_returns_zero
+    # Purpose: Verify that empty text and `None` return zero tokens.
     # Arrange
     token_counter_module = importlib.import_module("token_counter")
     counter = token_counter_module.TokenCounter.__new__(token_counter_module.TokenCounter)
@@ -39,6 +43,8 @@ def test_count_tokens_when_text_empty_returns_zero():
 
 def test_count_tokens_when_tokenizer_throws_uses_fallback_estimate(mocker):
     # Test Case ID: UT_CS_TKN_003
+    # Test Case Name: test_count_tokens_when_tokenizer_throws_uses_fallback_estimate
+    # Purpose: Verify fallback token estimation when tokenizer tokenization fails.
     # Arrange: tokenizer raises exception, forcing fallback estimation path.
     token_counter_module = importlib.import_module("token_counter")
     fake_tokenizer = mocker.Mock()
@@ -56,6 +62,8 @@ def test_count_tokens_when_tokenizer_throws_uses_fallback_estimate(mocker):
 @pytest.mark.xfail(strict=True, reason="Current constructor may leave self.tokenizer undefined when HF token is missing")
 def test_init_without_hf_token_should_set_tokenizer_to_none(mocker, monkeypatch):
     # Test Case ID: UT_CS_TKN_004
+    # Test Case Name: test_init_without_hf_token_should_set_tokenizer_to_none
+    # Purpose: Verify TokenCounter initialization safety when `HF_TOKEN` is missing.
     # This is an intentional fail case documenting a constructor weakness.
     token_counter_module = importlib.import_module("token_counter")
     monkeypatch.delenv("HF_TOKEN", raising=False)

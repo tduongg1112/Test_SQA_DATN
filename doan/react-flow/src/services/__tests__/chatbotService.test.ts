@@ -16,6 +16,9 @@ describe("ChatbotServiceTest", () => {
 
   it("parseResponse_withValidStructuredOutput_returnsParsedActions", () => {
     // Test Case ID: UT_FE_CBT_001
+    // Test Case Name: parseResponse_withValidStructuredOutput_returnsParsedActions
+    // Purpose: Verify that a valid chatbot text response is parsed into action,
+    // message, create actions, delete actions, and summary fields.
     const output =
       'Tao bang users create: [{"name":"users","is_new":true,"attrs":[{"name":"id","type":"int","pk":true}],"fks":[]}] delete: [] tomtat: da tao xong';
 
@@ -31,6 +34,9 @@ describe("ChatbotServiceTest", () => {
 
   it("parseResponse_withRefreshPrefix_setsActionRefresh", () => {
     // Test Case ID: UT_FE_CBT_002
+    // Test Case Name: parseResponse_withRefreshPrefix_setsActionRefresh
+    // Purpose: Verify that the `_REFRESH:` prefix is converted into the
+    // REFRESH action while the structured payload is still parsed.
     const output =
       '_REFRESH: Lam moi so do create: [{"name":"users","is_new":false,"attrs":[],"fks":[]}] delete: [] tomtat: refresh';
 
@@ -43,6 +49,9 @@ describe("ChatbotServiceTest", () => {
 
   it("sendMessage_whenApiReturnsValidOutput_returnsParsedResponse", async () => {
     // Test Case ID: UT_FE_CBT_003
+    // Test Case Name: sendMessage_whenApiReturnsValidOutput_returnsParsedResponse
+    // Purpose: Verify that `sendMessage` calls the configured API endpoint,
+    // sends the expected payload, and parses a valid API output.
     const fetchMock = global.fetch as unknown as ReturnType<typeof vi.fn>;
     fetchMock.mockResolvedValue({
       ok: true,
@@ -72,6 +81,9 @@ describe("ChatbotServiceTest", () => {
 
   it("sendMessage_whenApiReturnsMalformedOutput_returnsFallbackMessage", async () => {
     // Test Case ID: UT_FE_CBT_004
+    // Test Case Name: sendMessage_whenApiReturnsMalformedOutput_returnsFallbackMessage
+    // Purpose: Verify that malformed AI output is handled by returning a safe
+    // fallback response instead of throwing to the UI.
     const fetchMock = global.fetch as unknown as ReturnType<typeof vi.fn>;
     fetchMock.mockResolvedValue({
       ok: true,
@@ -95,6 +107,9 @@ describe("ChatbotServiceTest", () => {
 
   it("sendMessage_whenHttpError_returnsFallbackMessage", async () => {
     // Test Case ID: UT_FE_CBT_005
+    // Test Case Name: sendMessage_whenHttpError_returnsFallbackMessage
+    // Purpose: Verify that HTTP-level API failures return the chatbot fallback
+    // message and do not expose an exception to callers.
     const fetchMock = global.fetch as unknown as ReturnType<typeof vi.fn>;
     fetchMock.mockResolvedValue({
       ok: false,

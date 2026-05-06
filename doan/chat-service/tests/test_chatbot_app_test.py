@@ -80,6 +80,8 @@ def _sample_generate_payload(include_history=True):
 
 def test_health_check_when_tokenizer_loaded_returns_status_ok(client, chat_app_module, mocker):
     # Test Case ID: UT_CS_APP_001
+    # Test Case Name: test_health_check_when_tokenizer_loaded_returns_status_ok
+    # Purpose: Verify the health-check endpoint when the tokenizer is available.
     # Arrange: chatbot service starts with an available tokenizer.
     chat_app_module.token_counter = mocker.Mock()
 
@@ -96,6 +98,8 @@ def test_health_check_when_tokenizer_loaded_returns_status_ok(client, chat_app_m
 
 def test_health_check_when_tokenizer_unavailable_returns_tokenizer_false(client, chat_app_module):
     # Test Case ID: UT_CS_APP_002
+    # Test Case Name: test_health_check_when_tokenizer_unavailable_returns_tokenizer_false
+    # Purpose: Verify the health-check endpoint when the tokenizer is unavailable.
     # Arrange: tokenizer is intentionally unavailable.
     chat_app_module.token_counter = None
 
@@ -111,6 +115,9 @@ def test_health_check_when_tokenizer_unavailable_returns_tokenizer_false(client,
 
 def test_generate_with_valid_response_key_returns_200_and_metrics(client, chat_app_module, mocker):
     # Test Case ID: UT_CS_APP_003
+    # Test Case Name: test_generate_with_valid_response_key_returns_200_and_metrics
+    # Purpose: Verify successful non-streaming generation when upstream returns the
+    #          `response` key.
     # Arrange: upstream returns a valid payload via the `response` key.
     _set_token_counter(chat_app_module, mocker)
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -136,6 +143,9 @@ def test_generate_with_valid_response_key_returns_200_and_metrics(client, chat_a
 
 def test_generate_with_output_key_returns_200_and_preserves_output(client, chat_app_module, mocker):
     # Test Case ID: UT_CS_APP_004
+    # Test Case Name: test_generate_with_output_key_returns_200_and_preserves_output
+    # Purpose: Verify successful generation when upstream returns the `output` key instead
+    #          of `response`.
     # Arrange: upstream uses the fallback `output` key.
     _set_token_counter(chat_app_module, mocker)
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -158,6 +168,8 @@ def test_generate_with_output_key_returns_200_and_preserves_output(client, chat_
 
 def test_generate_when_timeout_returns_504_and_stores_timeout_metric(client, chat_app_module, mocker):
     # Test Case ID: UT_CS_APP_005
+    # Test Case Name: test_generate_when_timeout_returns_504_and_stores_timeout_metric
+    # Purpose: Verify timeout handling when the upstream LLM/Kaggle request times out.
     # Arrange: upstream chatbot times out.
     _set_token_counter(chat_app_module, mocker, side_effect=[9])
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -178,6 +190,8 @@ def test_generate_when_upstream_json_malformed_returns_500_and_stores_error_metr
     client, chat_app_module, mocker
 ):
     # Test Case ID: UT_CS_APP_006
+    # Test Case Name: test_generate_when_upstream_json_malformed_returns_500_and_stores_error_metric
+    # Purpose: Verify error handling when the upstream response cannot be parsed as JSON.
     # Arrange: upstream response cannot be parsed as JSON.
     _set_token_counter(chat_app_module, mocker, side_effect=[8])
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -199,6 +213,9 @@ def test_generate_when_upstream_json_malformed_returns_500_and_stores_error_metr
 
 def test_generate_when_history_missing_uses_default_history_value(client, chat_app_module, mocker):
     # Test Case ID: UT_CS_APP_007
+    # Test Case Name: test_generate_when_history_missing_uses_default_history_value
+    # Purpose: Verify the default history value when the request does not provide chat
+    #          history.
     # Arrange: request omits the `history` field.
     _set_token_counter(chat_app_module, mocker)
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -220,6 +237,9 @@ def test_generate_when_history_missing_uses_default_history_value(client, chat_a
 @pytest.mark.xfail(strict=True, reason="Current code returns 500 instead of validating invalid JSON body")
 def test_generate_with_invalid_json_body_should_return_400(client):
     # Test Case ID: UT_CS_APP_008
+    # Test Case Name: test_generate_with_invalid_json_body_should_return_400
+    # Purpose: Verify validation behavior for an invalid JSON request body in the generate
+    #          API.
     # This is an intentional fail case documenting a validation gap in app.py.
     response = client.post("/generate", data="", content_type="application/json")
 
@@ -229,6 +249,9 @@ def test_generate_with_invalid_json_body_should_return_400(client):
 @pytest.mark.xfail(strict=True, reason="Current code ignores upstream status_code and returns 200")
 def test_generate_when_upstream_status_is_500_should_propagate_failure(client, chat_app_module, mocker):
     # Test Case ID: UT_CS_APP_009
+    # Test Case Name: test_generate_when_upstream_status_is_500_should_propagate_failure
+    # Purpose: Verify upstream failure propagation when upstream returns HTTP 500 with a
+    #          JSON body.
     # This is an intentional fail case documenting that upstream HTTP status is ignored.
     _set_token_counter(chat_app_module, mocker)
     _set_metrics_mock(chat_app_module, mocker)
@@ -247,6 +270,9 @@ def test_generate_stream_with_prompt_returns_event_stream_and_stores_metrics(
     client, chat_app_module, mocker
 ):
     # Test Case ID: UT_CS_APP_010
+    # Test Case Name: test_generate_stream_with_prompt_returns_event_stream_and_stores_metrics
+    # Purpose: Verify successful streaming generation when the request uses the `prompt`
+    #          field.
     # Arrange: upstream stream yields two valid SSE chunks.
     _set_token_counter(chat_app_module, mocker, side_effect=[5, 4])
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -278,6 +304,9 @@ def test_generate_stream_when_chunk_malformed_skips_bad_chunk_and_continues(
     client, chat_app_module, mocker
 ):
     # Test Case ID: UT_CS_APP_011
+    # Test Case Name: test_generate_stream_when_chunk_malformed_skips_bad_chunk_and_continues
+    # Purpose: Verify that malformed stream chunks are skipped while later valid chunks
+    #          continue.
     # Arrange: one malformed SSE chunk is mixed with valid chunks.
     _set_token_counter(chat_app_module, mocker, side_effect=[3, 2])
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -308,6 +337,9 @@ def test_generate_stream_when_stream_raises_exception_stores_error_metric(
     client, chat_app_module, mocker
 ):
     # Test Case ID: UT_CS_APP_012
+    # Test Case Name: test_generate_stream_when_stream_raises_exception_stores_error_metric
+    # Purpose: Verify stream error handling when upstream streaming raises an exception mid-
+    #          stream.
     # Arrange: upstream stream breaks after the first chunk.
     _set_token_counter(chat_app_module, mocker, side_effect=[3])
     metrics_mock = _set_metrics_mock(chat_app_module, mocker)
@@ -334,6 +366,8 @@ def test_generate_stream_when_stream_raises_exception_stores_error_metric(
 
 def test_set_kaggle_url_with_valid_url_updates_global_url(client, chat_app_module):
     # Test Case ID: UT_CS_APP_013
+    # Test Case Name: test_set_kaggle_url_with_valid_url_updates_global_url
+    # Purpose: Verify successful update of the Kaggle API URL.
     # Act
     response = client.post("/set-kaggle-url", json={"url": "https://abc.ngrok.app/"})
 
@@ -345,6 +379,8 @@ def test_set_kaggle_url_with_valid_url_updates_global_url(client, chat_app_modul
 
 def test_get_metrics_with_default_limit_returns_metrics_and_statistics(client, chat_app_module):
     # Test Case ID: UT_CS_APP_014
+    # Test Case Name: test_get_metrics_with_default_limit_returns_metrics_and_statistics
+    # Purpose: Verify metrics listing with the default limit.
     # Arrange: mock DB read calls for metrics list and aggregated statistics.
     cursor = Mock()
     cursor.fetchall.return_value = [{"id": 1, "status": "success"}]
@@ -369,6 +405,8 @@ def test_get_metrics_with_default_limit_returns_metrics_and_statistics(client, c
 
 def test_get_metric_detail_when_record_exists_returns_record(client, chat_app_module):
     # Test Case ID: UT_CS_APP_015
+    # Test Case Name: test_get_metric_detail_when_record_exists_returns_record
+    # Purpose: Verify metric detail retrieval when the requested metric record exists.
     # Arrange: mock DB detail query for a known metric row.
     cursor = Mock()
     cursor.fetchone.return_value = {"id": 1, "status": "success"}

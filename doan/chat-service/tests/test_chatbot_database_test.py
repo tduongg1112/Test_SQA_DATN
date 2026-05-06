@@ -17,6 +17,8 @@ import mysql.connector
 
 def test_get_connection_with_include_db_returns_connection(mocker):
     # Test Case ID: UT_CS_DB_001
+    # Test Case Name: test_get_connection_with_include_db_returns_connection
+    # Purpose: Verify MySQL connection creation when the database name is included.
     # Arrange: replace mysql.connector.connect with a controllable mock.
     database_module = __import__("database")
     db = database_module.Database()
@@ -33,6 +35,9 @@ def test_get_connection_with_include_db_returns_connection(mocker):
 
 def test_init_database_when_connections_valid_creates_schema_and_table(mocker):
     # Test Case ID: UT_CS_DB_002
+    # Test Case Name: test_init_database_when_connections_valid_creates_schema_and_table
+    # Purpose: Verify database and `chat_metrics` table initialization when connections are
+    #          valid.
     # Arrange: mock both bootstrap connection and schema connection.
     database_module = __import__("database")
     db = database_module.Database()
@@ -67,6 +72,8 @@ def test_init_database_when_connections_valid_creates_schema_and_table(mocker):
 
 def test_insert_metrics_with_valid_payload_persists_total_tokens(mocker):
     # Test Case ID: UT_CS_DB_003
+    # Test Case Name: test_insert_metrics_with_valid_payload_persists_total_tokens
+    # Purpose: Verify successful metric insertion and correct `total_tokens` calculation.
     # Arrange: mock an INSERT path on the database connection.
     database_module = __import__("database")
     db = database_module.Database()
@@ -103,6 +110,9 @@ def test_insert_metrics_with_valid_payload_persists_total_tokens(mocker):
 
 def test_insert_metrics_when_connection_unavailable_returns_false(mocker):
     # Test Case ID: UT_CS_DB_004
+    # Test Case Name: test_insert_metrics_when_connection_unavailable_returns_false
+    # Purpose: Verify graceful behavior when the database connection is unavailable during
+    #          metric insertion.
     # Arrange: simulate unavailable database connection.
     database_module = __import__("database")
     db = database_module.Database()
