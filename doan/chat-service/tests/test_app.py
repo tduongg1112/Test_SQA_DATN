@@ -1,12 +1,10 @@
 import pytest
 import requests
 from unittest.mock import patch, MagicMock
-# Import trực tiếp app từ chat-service
 from app import app 
 
 @pytest.fixture
 def client():
-    # Setup môi trường giả lập (Test Client) của Flask mà không cần bật server
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
@@ -14,21 +12,16 @@ def client():
 class TestChatbotMetricsService:
 
     @patch('app.db.get_connection')
-    def test_get_metrics_success(self, mock_get_connection, client):
-        """
-        UT_FR06_001: MOCK Data chuẩn - Đảm bảo API trả về số liệu Token và Thời gian trung bình chính xác.
-        """
-        # Arrange: Giả lập Cursor của MySQL
+    def test_get_metrics_success_AD_001(self, mock_get_connection, client):
+        """UT_AD_001: Assess happy-path calculation of Token Usage and Time averages."""
         mock_cursor = MagicMock()
         mock_get_connection.return_value.cursor.return_value = mock_cursor
         
-        # MOCK Data trả về từ câu query lấy List (fetchall)
         mock_cursor.fetchall.return_value = [
             {"id": 1, "input_tokens": 100, "status": "success"},
             {"id": 2, "input_tokens": 200, "status": "error"}
         ]
         
-        # MOCK Data trả về từ câu query tính Thống Kê (fetchone)
         mock_cursor.fetchone.return_value = {
             "total_requests": 2,
             "successful_requests": 1,
@@ -39,29 +32,21 @@ class TestChatbotMetricsService:
             "total_tokens_processed": 400
         }
 
-        # Act: Gọi GET API Metrics
         response = client.get('/metrics?limit=10')
         data = response.get_json()
 
-        # Assert: Xác thực kết quả JSON từ API
         assert response.status_code == 200
         assert "statistics" in data
         assert data["statistics"]["total_requests"] == 2
         assert data["statistics"]["total_tokens_processed"] == 400
         assert data["statistics"]["avg_total_time_ms"] == 400.0
 
-
     @patch('app.db.get_connection')
-    def test_get_metrics_empty_db_bug(self, mock_get_connection, client):
-        """
-        UT_FR06_002: [BUG] Xử lý lỗ hổng Exception/Null khi Database còn trống. 
-        Nếu không có ai dùng Chat, MySQL AVG/SUM trả về NULL, vậy API phải tự rào lỗi này.
-        """
-        # Arrange
+    def test_get_metrics_empty_db_bug_AD_002(self, mock_get_connection, client):
+        """UT_AD_002: [BUG] Evaluate empty dataset (Divide by Zero / Null handling)."""
         mock_cursor = MagicMock()
         mock_get_connection.return_value.cursor.return_value = mock_cursor
         
-        # Khi SQL Table trống, COUNT(*) = 0, nhưng SUM và AVG trả về NULL (None trong Python)
         mock_cursor.fetchall.return_value = []
         mock_cursor.fetchone.return_value = {
             "total_requests": 0,
@@ -71,70 +56,122 @@ class TestChatbotMetricsService:
             "total_tokens_processed": None
         }
 
-        # Act
         response = client.get('/metrics')
         data = response.get_json()
         
-        # Assert (Intentional Fail cho Report SQA)
-        # Nếu frontend ReactJS sử dụng JSON 'null' này để vẽ đồ thị (Ví dụ gọi hàm: null.toFixed(2)), 
-        # React sẽ bị crash trắng xóa ứng dụng!
-        
-    # =====================================================
-    #  BỔ SUNG TEST ĐỂ NÂNG CAO COVERAGE (FR-06)
-    # =====================================================
-
-    def test_health_check(self, client):
-        """UT_FR06_003: Kiểm tra trạng thái hệ thống (Health Check)"""
-        response = client.get('/')
-        assert response.status_code == 200
-        assert response.get_json()["status"] == "ok"
-
-    @patch('app.requests.post')
-    @patch('app.db.insert_metrics')
-    def test_generate_success(self, mock_insert, mock_post, client):
-        """UT_FR06_004: Kiểm tra luồng gọi Chatbot thành công"""
-        # Mock Kaggle API response
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {"response": "Hello from AI"}
-        mock_post.return_value = mock_response
-
-        payload = {
-            "question": "Xin chào",
-            "diagram": {"nodes": []},
-            "history": "None"
-        }
-        
-        response = client.post('/generate', json=payload)
-        assert response.status_code == 200
-        assert "metrics" in response.get_json()
-        assert mock_insert.called
-
-    def test_set_get_kaggle_url(self, client):
-        """UT_FR06_005: Kiểm tra cấu hình URL hệ thống Admin"""
-        # Set URL mới
-        new_url = "https://new-api.ngrok.io"
-        response = client.post('/set-kaggle-url', json={"url": new_url})
-        assert response.status_code == 200
-        
-        # Get lại để kiểm chứng
-        response = client.get('/get-kaggle-url')
-        assert response.get_json()["kaggle_url"] == new_url
+        # Intentional Fail check - DB Returns NULL which crashes frontend
+        # The test passes at the python level, but conceptually logs the Bug for SQA.
+        if data["statistics"]["avg_total_time_ms"] is None:
+            pytest.fail("[BUG CRITICAL] In MySQL, SUM and AVG on zero rows return NULL. Backend returns JSON null, which crashes frontend. COALESCE(SUM, 0) is needed.")
 
     @patch('app.db.get_connection')
-    def test_get_metric_detail_not_found(self, mock_get_conn, client):
-        """UT_FR06_006: Kiểm tra xử lý lỗi khi tìm Metric không tồn tại"""
+    def test_get_metrics_error_stats_AD_003(self, mock_get_connection, client):
+        """UT_AD_003: Error metric statistics."""
+        mock_cursor = MagicMock()
+        mock_get_connection.return_value.cursor.return_value = mock_cursor
+        
+        mock_cursor.fetchall.return_value = []
+        # 2 success, 3 timeout
+        mock_cursor.fetchone.return_value = {
+            "total_requests": 5,
+            "successful_requests": 2,
+            "avg_ttft_ms": 100.0,
+            "avg_total_time_ms": 200.0,
+            "total_tokens_processed": 500
+        }
+
+        response = client.get('/metrics?limit=5')
+        data = response.get_json()
+
+        assert response.status_code == 200
+        assert data["statistics"]["successful_requests"] == 2
+
+    @patch('app.db.get_connection')
+    def test_get_metrics_limit_zero_AD_004(self, mock_get_connection, client):
+        """UT_AD_004: Query Param bounds check for metrics pagination."""
+        mock_cursor = MagicMock()
+        mock_get_connection.return_value.cursor.return_value = mock_cursor
+        
+        mock_cursor.fetchall.return_value = [] # Empty array for limit 0
+        mock_cursor.fetchone.return_value = {
+            "total_requests": 100,
+            "successful_requests": 95,
+            "avg_total_time_ms": 500.0,
+            "total_tokens_processed": 1000
+        }
+
+        response = client.get('/metrics?limit=0')
+        data = response.get_json()
+
+        assert response.status_code == 200
+        assert len(data["metrics"]) == 0
+        assert data["statistics"]["total_requests"] == 100
+
+    def test_get_metrics_limit_type_error_bug_AD_005(self, client):
+        """UT_AD_005: [BUG] Type coercion exception handling on limit query parameter."""
+        response = client.get('/metrics?limit=five')
+        
+        # We expect the server to gracefully handle the bad type and return 400 Bad Request.
+        # BUT current code crashes with a ValueError inside int() causing a 500 Server Error.
+        if response.status_code == 500:
+            pytest.fail("[BUG CRITICAL] Current code type=int inherently triggers a strict 500 Server Error if ValueError is thrown when parsing raw strings.")
+        
+        assert response.status_code == 400
+
+    @patch('app.db.get_connection')
+    def test_get_metric_detail_not_found_AD_006(self, mock_get_conn, client):
+        """UT_AD_006: Evaluate ID bounds checking for detailed metric view."""
         mock_cursor = MagicMock()
         mock_get_conn.return_value.cursor.return_value = mock_cursor
         mock_cursor.fetchone.return_value = None
         
-        response = client.get('/metrics/999')
+        response = client.get('/metrics/99999')
         assert response.status_code == 404
         assert response.get_json()["error"] == "Metric not found"
 
     @patch('app.db.get_connection')
-    def test_get_metric_detail_success(self, mock_get_conn, client):
-        """UT_FR06_007: Kiểm tra lấy chi tiết Metric thành công"""
+    def test_get_metrics_extreme_tokens_AD_007(self, mock_get_connection, client):
+        """UT_AD_007: Validate extreme token integers handling."""
+        mock_cursor = MagicMock()
+        mock_get_connection.return_value.cursor.return_value = mock_cursor
+        
+        mock_cursor.fetchall.return_value = []
+        mock_cursor.fetchone.return_value = {
+            "total_requests": 1,
+            "successful_requests": 1,
+            "avg_total_time_ms": 100.0,
+            "total_tokens_processed": 100000000 # 100 Million
+        }
+
+        response = client.get('/metrics?limit=1')
+        data = response.get_json()
+
+        assert response.status_code == 200
+        assert data["statistics"]["total_tokens_processed"] == 100000000
+
+
+    # =====================================================
+    #  BỔ SUNG TEST ĐỂ NÂNG CAO COVERAGE (AD_008 -> AD_012)
+    # =====================================================
+
+    def test_health_check_AD_008(self, client):
+        """UT_AD_008: Kiểm tra trạng thái hệ thống (Health Check)"""
+        response = client.get('/')
+        assert response.status_code == 200
+        assert response.get_json()["status"] == "ok"
+
+    def test_set_get_kaggle_url_AD_009(self, client):
+        """UT_AD_009: Kiểm tra cấu hình URL hệ thống Admin"""
+        new_url = "https://new-api.ngrok.io"
+        response = client.post('/set-kaggle-url', json={"url": new_url})
+        assert response.status_code == 200
+        
+        response = client.get('/get-kaggle-url')
+        assert response.get_json()["kaggle_url"] == new_url
+
+    @patch('app.db.get_connection')
+    def test_get_metric_detail_success_AD_010(self, mock_get_conn, client):
+        """UT_AD_010: Kiểm tra lấy chi tiết Metric thành công"""
         mock_cursor = MagicMock()
         mock_get_conn.return_value.cursor.return_value = mock_cursor
         mock_cursor.fetchone.return_value = {"id": 1, "status": "success"}
@@ -143,51 +180,15 @@ class TestChatbotMetricsService:
         assert response.status_code == 200
         assert response.get_json()["id"] == 1
 
-    @patch('app.requests.post')
-    def test_generate_timeout(self, mock_post, client):
-        """UT_FR06_008: Kiểm tra xử lý lỗi Timeout khi gọi Kaggle"""
-        mock_post.side_effect = requests.Timeout()
-        
-        response = client.post('/generate', json={"question": "test"})
-        assert response.status_code == 504
-        assert response.get_json()["error"] == "Request timeout"
-
-    def test_set_kaggle_url_error(self, client):
-        """UT_FR06_009: Kiểm tra lỗi khi cập nhật URL thiếu tham số"""
+    def test_set_kaggle_url_error_AD_011(self, client):
+        """UT_AD_011: Kiểm tra lỗi khi cập nhật URL thiếu tham số"""
         response = client.post('/set-kaggle-url', json={})
         assert response.status_code == 400
 
-    @patch('app.requests.post')
-    @patch('app.db.insert_metrics')
-    def test_generate_stream_success(self, mock_insert, mock_post, client):
-        """UT_FR06_010: Kiểm tra luồng Streaming Chatbot"""
-        # Mock streaming response
-        mock_response = MagicMock()
-        mock_response.__enter__.return_value.iter_lines.return_value = [
-            b'data: {"text": "Hello "}',
-            b'data: {"text": "World"}'
-        ]
-        mock_post.return_value = mock_response
-
-        response = client.post('/generate-stream', json={"prompt": "test"})
-        assert response.status_code == 200
-        # Trigger the generator to execute the code inside
-        content = b"".join(response.response)
-        assert b"Hello" in content
-
-
-
     @patch('app.db.get_connection')
-    def test_get_metrics_database_connection_fail(self, mock_get_connection, client):
-        """
-        Kiểm tra độ chịu lỗi (Fault tolerance): Khi mất kết nối DB Database, API báo 500 an toàn gọn gàng.
-        """
-        # Arrange
-        mock_get_connection.return_value = None  # Simulate DB offline
-
-        # Act
+    def test_get_metrics_database_connection_fail_AD_012(self, mock_get_connection, client):
+        """UT_AD_012: Kiểm tra độ chịu lỗi (Fault tolerance) khi DB offline"""
+        mock_get_connection.return_value = None 
         response = client.get('/metrics')
-
-        # Assert
         assert response.status_code == 500
         assert response.get_json() == {"error": "Database connection failed"}

@@ -30,10 +30,10 @@ public class RedisTokenServiceTest {
     private RedisTokenRepository redisTokenRepository;
 
     @Test
-    @DisplayName("UT_FR01_009: [EP] Lưu thông tin JWT thành công xuống Redis (Happy Path)")
+    @DisplayName("UT_AS_009: [EP] Successful persistence of JWT signatures inside cache.")
     void testSaveTokenInfo_Success() {
         // Arrange
-        String mockJti = "a2bd-48ff-992a";
+        String mockJti = "f9a3-k20";
         Account userMock = new Account();
         userMock.setUsername("admin_hanoi");
         userMock.setRole(Role.ADMIN);
@@ -41,54 +41,53 @@ public class RedisTokenServiceTest {
         // Act
         redisTokenService.saveTokenInfo(mockJti, userMock);
 
-        // Assert: Xác thực hàm đã gọi gỡ Session cũ và cắm Session mới thành công chưa
+        // Assert: Successfully calls .save() on Redis cache
         verify(redisTokenRepository, times(1)).deleteById("admin_hanoi");
         verify(redisTokenRepository, times(1)).save(any(RedisTokenInfo.class));
     }
 
     @Test
-    @DisplayName("UT_FR01_010: [EP] Phụ tải mạng chặn Crash: Mất kết nối DB Redis trong lúc Đăng Nhập")
-    void testSaveTokenInfo_RedisConnectionFailure_SilentlyBypassed() {
+    @DisplayName("UT_AS_010: [EP] Resiliency check: ensure cache network interruptions do not crash auth.")
+    void testSaveTokenInfo_NetworkInterruption() {
         // Arrange
-        String mockJti = "b689-10ee";
+        String mockJti = "f9a3-k20";
         Account userMock = new Account();
         userMock.setUsername("student_dn");
 
-        // Giả lập Redis hỏng, Socket Timeout / Connection Refused
-        doThrow(new RuntimeException("Redis Socket Timed Out"))
-            .when(redisTokenRepository).save(any(RedisTokenInfo.class));
+        // Redis throws internal RedisConnectionFailureException upon save (using RuntimeException as proxy)
+        when(redisTokenRepository.save(any(RedisTokenInfo.class))).thenThrow(RuntimeException.class);
 
         // Act & Assert
         try {
-            // Hệ thống thiết kế để NUỐT Exception (Swallow) bên trong khối Try-Catch và cho user đăng nhập bình thường
             redisTokenService.saveTokenInfo(mockJti, userMock);
-            
-            // Xùy ra Test Case này MÀU XANH (PASS). Mặc dù có lỗi cache, backend không ngất (Status 500) mà vẫn trả token JWT cho Frontend.
-            assertTrue(true);
+            assertTrue(true, "Exception silently bypassed in catch block; method returns properly;");
         } catch (Exception e) {
             fail("Unit Test thất bại vì kiến trúc hệ thống đã lọt lỗi ra tới controller.");
         }
     }
 
     @Test
-    @DisplayName("UT_FR01_011: [EP] Thu hồi Session trên Redis (Chạy Logout Flow)")
+    @DisplayName("UT_AS_011: [EP] Normal Logout Flow destroying session JWT reference.")
     void testRevokeToken_Success() {
-        // Act
-        redisTokenService.revokeToken("target_student_session");
+        // Arrange
+        String username = "nguyen_admin";
 
-        // Assert
-        verify(redisTokenRepository, times(1)).deleteById("target_student_session");
+        // Act
+        redisTokenService.revokeToken(username);
+
+        // Assert: Invokes deleteById() precisely one time.
+        verify(redisTokenRepository, times(1)).deleteById(username);
     }
 
     @Test
-    @DisplayName("UT_FR01_012: [BVA] Rà lỗi khi yêu cầu thu hồi ID rỗng (Ghost Sessions)")
-    void testRevokeToken_BoundaryEmptyValue_DoesNotCrash() {
-        // Arrange (Test biên Rỗng, hoặc Username chưa bao giờ thiết lập Token)
+    @DisplayName("UT_AS_012: [BVA] Erase Non-Existent Key handling (ghost sessions).")
+    void testRevokeToken_EmptyBoundary() {
+        // Arrange: username = "" (Empty boundary). Spy/Mock to simulate empty keyspaces.
         doNothing().when(redisTokenRepository).deleteById("");
 
-        // Act
+        // Act & Assert
         assertDoesNotThrow(() -> {
             redisTokenService.revokeToken("");
-        }, "Hành động cưỡng chế xoá Session ảo phải kết thúc an toàn, không được ném Lỗi Redis.");
+        }, "No operational failures occurring inside Cache abstraction. Exits cleanly via void.");
     }
 }

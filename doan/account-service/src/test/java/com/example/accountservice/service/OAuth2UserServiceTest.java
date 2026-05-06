@@ -16,6 +16,7 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,8 +30,6 @@ import static org.mockito.Mockito.when;
  * Tác giả: SQA Team - NFR-01 Authentication
  * Test Google OAuth2 Payload extraction and Database Synchronization.
  */
-import org.springframework.test.context.ActiveProfiles;
-
 @SpringBootTest
 @Transactional
 @ActiveProfiles("test")
@@ -46,7 +45,6 @@ public class OAuth2UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        // Giả lập Payload chuẩn chỉnh từ Google Client Registration
         ClientRegistration clientRegistration = ClientRegistration.withRegistrationId("google")
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .clientId("test-client")
@@ -60,9 +58,9 @@ public class OAuth2UserServiceTest {
     }
 
     @Test
-    @DisplayName("UT_FR01_006: [EP] User Google Login Lần Đầu (Tạo mới Account STUDENT)")
-    void testProcessOAuth2User_FirstTimeLogin_CreatesNewAccount() {
-        // Arrange: Cấu hình Payload Google trả về
+    @DisplayName("UT_AS_006: [EP] First login scenario creating a new internal application profile.")
+    void testProcessOAuth2User_FirstTimeLogin() {
+        // Arrange: Mock OAuth2UserRequest containing email = "new_student@fpt.edu.vn" missing from DB
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("email", "new_student@fpt.edu.vn");
         attributes.put("name", "New Student Nguyen");
@@ -70,20 +68,20 @@ public class OAuth2UserServiceTest {
         
         OAuth2User mockOAuth2User = new DefaultOAuth2User(null, attributes, "email");
 
-        // Act: Bắn Reflection để bypass Internet Request của hệ thống Spring
+        // Act
         ReflectionTestUtils.invokeMethod(oauth2UserService, "processOAuth2User", mockUserRequest, mockOAuth2User);
 
-        // Assert/CheckDB: Tự động gen tài khoản STUDENT dưới DB
+        // Assert: [CheckDB] SELECT role, username FROM account WHERE email = 'new_student@fpt.edu.vn';
         Optional<Account> dbAccount = accountRepository.findByEmailAndVisible("new_student@fpt.edu.vn", 1);
-        assertTrue(dbAccount.isPresent(), "Account phải được Insert vào DB ngay lập tức");
+        assertTrue(dbAccount.isPresent(), "Account must be physically inserted into DB");
         assertEquals(Role.STUDENT, dbAccount.get().getRole());
-        assertNotNull(dbAccount.get().getUsername(), "Unique Username Auto-Generator hoạt động");
+        assertNotNull(dbAccount.get().getUsername(), "Method generates a unique username");
     }
 
     @Test
-    @DisplayName("UT_FR01_007: [EP] User Login Lại (Trigger Cập nhật Google Ảnh Đại Diện)")
-    void testProcessOAuth2User_ReturningUser_UpdatesAccountDetails() {
-        // Arrange: Cắm rễ Data một tài khoản từng tồn tại
+    @DisplayName("UT_AS_007: [EP] Repeat login scenario triggering an internal Sync update.")
+    void testUpdateAccountFromOAuth2_RepeatLogin() {
+        // Arrange
         Account existing = new Account();
         existing.setUsername("old_google_user");
         existing.setEmail("old@google.com");
@@ -91,7 +89,6 @@ public class OAuth2UserServiceTest {
         existing.setVisible(1);
         accountRepository.save(existing);
 
-        // Chuẩn bị User Auth giả với ID Ảnh Đại Diện thay đổi
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("email", "old@google.com");
         attributes.put("picture", "NEW_PIC_UPDATED_URL");
@@ -100,26 +97,26 @@ public class OAuth2UserServiceTest {
         // Act
         ReflectionTestUtils.invokeMethod(oauth2UserService, "processOAuth2User", mockUserRequest, mockOAuth2User);
 
-        // Assert/CheckDB
+        // Assert: [CheckDB] SELECT picture FROM account WHERE email = ?; reflects the new URL.
         Account updatedAccount = accountRepository.findByEmailAndVisible("old@google.com", 1).get();
-        assertEquals("NEW_PIC_UPDATED_URL", updatedAccount.getPicture(), "Service thất bại trong việc Sync Google Image");
+        assertEquals("NEW_PIC_UPDATED_URL", updatedAccount.getPicture(), "Successfully updates picture.");
     }
 
     @Test
-    @DisplayName("UT_FR01_008: [BUG][BVA] Crash hệ thống do Server văng NullPointerException ở Payload rỗng")
-    void testCreateAccountFromOAuth2_NullEmail_ThrowsNullPointerException() {
-        // Arrange: Lấy Payload lỗi từ Google (Tài khoản Google Cổ hoặc không có Email)
+    @DisplayName("UT_AS_008: [BVA] Null boundary validation on Google OAuth Payload email extraction.")
+    void testCreateAccountFromOAuth2_NullBoundary() {
+        // Arrange: OAuth2UserInfo missing the email attribute (email=null).
         Map<String, Object> attributes = new HashMap<>();
-        attributes.put("sub", "1234"); // Key mặc định của Google 
-        attributes.put("email", null); // Hoặc bị thiếu key
+        attributes.put("sub", "1234"); 
+        attributes.put("email", null); 
         
         OAuth2User mockOAuth2User = new DefaultOAuth2User(null, attributes, "sub");
 
-        // Act & Assert (Intentional Report Fail)
+        // Act & Assert
         try {
             ReflectionTestUtils.invokeMethod(oauth2UserService, "processOAuth2User", mockUserRequest, mockOAuth2User);
         } catch (Exception e) {
-            org.junit.jupiter.api.Assertions.fail("[BUG CRITICAL] Hệ thống sập rớt luồng do NullPointerException khi Google Email rỗng. Dev quên check Null tại Service! Chi tiết: " + e.getCause());
+            org.junit.jupiter.api.Assertions.fail("[BUG CRITICAL] Extremely brittle null-check logic at line userInfo.getEmail().split(\"@\"). Crashes server threads on deformed payloads.");
         }
     }
 }

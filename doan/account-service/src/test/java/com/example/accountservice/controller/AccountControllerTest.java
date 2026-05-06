@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.List;
@@ -49,6 +50,7 @@ public class AccountControllerTest {
         adminAccount.setUsername("admin1");
         adminAccount.setPassword("123456");
         adminAccount.setEmail("admin1@fpt.edu.vn");
+        adminAccount.setCccd("111111111");
         adminAccount.setRole(Role.ADMIN);
         adminAccount.setVisible(1);
 
@@ -56,6 +58,7 @@ public class AccountControllerTest {
         studentAccount1.setUsername("student1");
         studentAccount1.setPassword("123456");
         studentAccount1.setEmail("student1@fpt.edu.vn");
+        studentAccount1.setCccd("222222222");
         studentAccount1.setRole(Role.STUDENT);
         studentAccount1.setVisible(1);
 
@@ -63,6 +66,7 @@ public class AccountControllerTest {
         studentAccount2.setUsername("student2");
         studentAccount2.setPassword("123456");
         studentAccount2.setEmail("student2@fpt.edu.vn");
+        studentAccount2.setCccd("333333333");
         studentAccount2.setRole(Role.STUDENT);
         studentAccount2.setVisible(1);
 
@@ -72,53 +76,43 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_FR06_008: Admin truy xuất Dashboard tổng quan - Không Filter")
+    @DisplayName("UT_AS_019: [EP] Verify Admin's ability to view aggregate dashboard accounts without filters.")
     void testSearchAccounts_AsAdmin_NoFilter_ReturnsAll() throws Exception {
         long totalAccounts = accountRepository.count();
         assertEquals(3, totalAccounts, "Phải có đúng 3 tài khoản khởi tạo");
 
-        // Act & Assert Http API Request
-        // Giả lập Admin Header: X-Role chứa danh phận, token tuỳ thuộc kiến trúc auth
-        // thực tế
         mockMvc.perform(get("/account/search")
                 .header("X-User-Role", "ADMIN"))
-
-                // Kỳ vọng hệ thống trả về 200 OK và mang JSON Data về Dashboard
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalElements").value(3)) // Trang báo tổng 3 Object
-                .andExpect(jsonPath("$.content").isArray()); // Trả về tập danh sách
+                .andExpect(jsonPath("$.totalElements").value(3)) 
+                .andExpect(jsonPath("$.content").isArray()); 
     }
 
     @Test
-    @DisplayName("UT_FR06_009: Admin truy xuất Dashboard - Thống kê khoanh vùng Tỷ lệ Sinh Viên")
+    @DisplayName("UT_AS_020: [EP] Verify Admin fetching specific role stats (e.g., count total STUDENTs).")
     void testSearchAccounts_AsAdmin_FilterByRoleStudent_ReturnsOnlyStudents() throws Exception {
-        // Act & Assert : Bắn API ghép Param '?role=STUDENT'
         mockMvc.perform(get("/account/search")
                 .param("role", "STUDENT")
                 .header("X-User-Role", "ADMIN"))
-
                 .andExpect(status().isOk())
-                // DB có 2 Học Sinh đã khởi tạo -> Kết quả thống kê (totalElements) phải bằng
-                // đúng 2.
                 .andExpect(jsonPath("$.totalElements").value(2))
                 .andExpect(jsonPath("$.content[0].role").value("STUDENT"));
     }
 
     @Test
-    @DisplayName("UT_FR06_010: Student cố tình gọi API chặn phân quyền của Dashboard System")
+    @DisplayName("UT_AS_021: [BVA] Check authorization walls blocking unauthorized calls to Admin API.")
     void testSearchAccounts_AsStudent_AccessDenied_Throws403() throws Exception {
-        // Act & Assert (Vét Nhánh Role Cấm)
         mockMvc.perform(get("/account/search")
-                // Gắn mác mình là STUDENT đang đòi vào trang của Admin
                 .header("X-User-Role", "STUDENT"))
-
-                // Kì vọng: Trả bề đúng lỗi 403 Forbidden AccessDenied (Thay vì Error 500 nổ
-                // Server).
                 .andExpect(status().isForbidden());
     }
 
+    // =====================================================
+    //  BỔ SUNG TEST ĐỂ NÂNG CAO COVERAGE (UT_AS_022 -> UT_AS_031)
+    // =====================================================
+
     @Test
-    @DisplayName("UT_CONTROLLER_001: Admin lấy thông tin qua username")
+    @DisplayName("UT_AS_022: Admin lấy thông tin qua username")
     void testGetAccountByUsername() throws Exception {
         mockMvc.perform(get("/account/student1")
                 .header("X-User-Role", "ADMIN"))
@@ -127,7 +121,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_002: Lấy thông tin chính mình (me) qua header")
+    @DisplayName("UT_AS_023: Lấy thông tin chính mình (me) qua header")
     void testGetAccountByMe() throws Exception {
         mockMvc.perform(get("/account/me")
                 .header("X-Username", "student2"))
@@ -136,7 +130,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_003: Admin xóa mềm tài khoản")
+    @DisplayName("UT_AS_024: Admin xóa mềm tài khoản")
     void testDeleteAccount() throws Exception {
         Account temp = new Account();
         temp.setUsername("tobedeleted");
@@ -154,7 +148,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_004: Admin tạo tài khoản mới")
+    @DisplayName("UT_AS_025: Admin tạo tài khoản mới")
     void testCreateAccount() throws Exception {
         String json = "{\"firstName\":\"New\",\"lastName\":\"User\",\"cccd\":\"1122334455\"}";
         
@@ -168,7 +162,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_005: Admin cập nhật tài khoản")
+    @DisplayName("UT_AS_026: Admin cập nhật tài khoản")
     void testUpdateAccount() throws Exception {
         Account acc = accountRepository.findByUsernameAndVisible("student1", 1).get();
         acc.setFirstName("UpdatedName");
@@ -177,12 +171,13 @@ public class AccountControllerTest {
                 .header("X-User-Role", "ADMIN")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(acc)))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName").value("UpdatedName"));
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_006: Lấy bulk tài khoản qua danh sách ID")
+    @DisplayName("UT_AS_027: Lấy bulk tài khoản qua danh sách ID")
     void testGetAccountsByIds() throws Exception {
         Account a1 = accountRepository.findByUsernameAndVisible("student1", 1).get();
         Account a2 = accountRepository.findByUsernameAndVisible("student2", 1).get();
@@ -196,7 +191,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_007: Bulk lấy danh sách ID rỗng")
+    @DisplayName("UT_AS_028: Bulk lấy danh sách ID rỗng")
     void testGetAccountsByIds_Empty() throws Exception {
         mockMvc.perform(get("/account/bulk")
                 .param("ids", "")
@@ -206,7 +201,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_008: Tìm giáo viên qua CCCD")
+    @DisplayName("UT_AS_029: Tìm giáo viên qua CCCD")
     void testGetTeacherByCccd() throws Exception {
         Account teacher = new Account();
         teacher.setUsername("teacher1");
@@ -222,7 +217,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_009: Tìm tài khoản qua email")
+    @DisplayName("UT_AS_030: Tìm tài khoản qua email")
     void testGetAccountByEmail() throws Exception {
         mockMvc.perform(get("/account/email/student1@fpt.edu.vn")
                 .header("X-User-Role", "ADMIN"))
@@ -231,7 +226,7 @@ public class AccountControllerTest {
     }
 
     @Test
-    @DisplayName("UT_CONTROLLER_010: Tìm tài khoản qua CCCD - Không thấy (404)")
+    @DisplayName("UT_AS_031: Tìm tài khoản qua CCCD - Không thấy (404)")
     void testGetAccountByCccd_NotFound() throws Exception {
         mockMvc.perform(get("/account/student/000000000")
                 .header("X-User-Role", "ADMIN"))
